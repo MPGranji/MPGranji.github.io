@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0B132B">
   <meta name="description" content="Vương Phan Quốc Cường: a project-by-project journey from software engineering to data analysis and data engineering, 2022 to 2026.">
+  <link rel="canonical" href="https://mpgranji.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vương Phan Quốc Cường">
+  <meta property="og:title" content="Vương Phan Quốc Cường | Data Analyst &amp; Data Engineer">
+  <meta property="og:description" content="From data pipelines to useful analysis — selected work across data engineering and analytics.">
+  <meta property="og:url" content="https://mpgranji.github.io/">
+  <meta property="og:image" content="https://mpgranji.github.io/assets/img/portfolio-og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vương Phan Quốc Cường, Data Analyst and Data Engineer — from data pipelines to useful analysis.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vương Phan Quốc Cường | Data Analyst &amp; Data Engineer">
+  <meta name="twitter:description" content="From data pipelines to useful analysis — selected work across data engineering and analytics.">
+  <meta name="twitter:image" content="https://mpgranji.github.io/assets/img/portfolio-og.png">
   <title>Vương Phan Quốc Cường | Data Analyst and Data Engineer</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%230B132B'/%3E%3Cpath d='M6 20a10 10 0 0 1 20 0z' fill='%23D97706'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -238,7 +253,7 @@
                 <div class="thumbs">
                   <button type="button" aria-pressed="true" data-src="assets/img/banking-architecture.jpg" data-caption="From Oracle and PostgreSQL through Bronze, Silver and Gold to a masked sandbox"><img src="assets/thumb/banking-architecture.jpg" width="320" height="200" loading="lazy" alt="">Architecture</button>
                   <button type="button" aria-pressed="false" data-src="assets/img/banking-airflow.jpg" data-caption="The lakehouse DAGs and their runs in Airflow"><img src="assets/thumb/banking-airflow.jpg" width="320" height="200" loading="lazy" alt="">Airflow runs</button>
-                  <button type="button" aria-pressed="false" data-src="assets/img/banking-serving.jpg" data-caption="Wireframe of the Customer 360 and next-best-offer dashboard"><img src="assets/thumb/banking-serving.jpg" width="320" height="200" loading="lazy" alt="">Dashboard design</button>
+                  <button type="button" aria-pressed="false" data-src="assets/img/banking-serving.jpg" data-caption="Superset dashboard serving masked Customer 360 marts"><img src="assets/thumb/banking-serving.jpg" width="320" height="200" loading="lazy" alt="">Superset dashboard</button>
                 </div>
             </figure>
             <dl class="story">
@@ -278,7 +293,7 @@
         <div class="project-side">
             <h3 id="t-fashion"><span>Fashion E-commerce with Virtual Try-on</span></h3>
             <p class="project-what">A shopping app with product recommendations and virtual try-on.</p>
-            <p class="project-meta"><span>Defended 24 Aug 2026</span><span class="tag">Team of two</span><span class="tag">Data Analyst</span></p>
+            <p class="project-meta"><span>Defended 24 Aug 2026</span><span class="tag">Team of two</span><span class="tag">Mobile app</span><span class="tag">Recommendations</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/docs/fashion-ecommerce-mobile.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
               <a class="is-demo" href="https://www.youtube.com/watch?v=jNOUzghrpYM" target="_blank" rel="noopener"><span><span class="long">App demo</span><span class="short">App</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a>
               <a class="is-demo" href="https://youtu.be/h9GcLePPjQY" target="_blank" rel="noopener"><span><span class="long">Admin demo</span><span class="short">Admin</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a>
@@ -304,9 +319,9 @@
             <dl class="story">
               <div><dt>The problem</dt><dd>Buying clothes online means guessing. Shoppers struggle to find items that suit them and cannot tell how those items will look on their body.</dd></div>
               <div><dt>What I did</dt><dd><ul>
-                <li>Owned the mobile app, the recommendation system and the virtual fitting room.</li>
-                <li>Built six web admin areas: customers, roles, orders, support, search and recommendation analytics, and try-on management.</li>
-                <li>Deployed with Docker Compose on Amazon Lightsail. My teammate owned the customer web and the other admin areas.</li>
+                <li>Built the React Native mobile app, including product discovery, recommendations, virtual fitting, checkout and order tracking.</li>
+                <li>Built six web admin areas covering customers, roles, orders, support, search and recommendation analytics, and try-on management.</li>
+                <li>Deployed with Docker Compose on Amazon Lightsail. My teammate owned the customer web, product catalog, inventory and promotions.</li>
               </ul></dd></div>
               <div><dt>How data moves</dt><dd><ol class="flow"><li>Shopper events</li><li>Preference profile</li><li>Context-aware ranking</li><li>Recommendations</li><li>Admin analytics</li></ol><figure class="gallery in-story">
                 <button class="shot" type="button"><img src="assets/img/thesis-recommend.jpg" width="1344" height="806" loading="lazy" alt="From captured interactions to ranked products, and back"><span class="shot-hint">Enlarge</span></button>
@@ -343,7 +358,7 @@
             <p class="project-what">Revenue analysis, pricing proposal and front-desk system for a hotel.</p>
             <p class="project-meta"><span>Eight-week plan</span><span class="tag">Client project</span><span class="tag">Data Analyst</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/docs/Report_hotel_VPQC.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
-              <a class="is-demo" href="https://hotel-digital.vercel.app/" target="_blank" rel="noopener"><span><span class="long">Live demo</span><span class="short">Demo</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
+              <a class="is-demo" href="https://hotel-digital.vercel.app/" target="_blank" rel="noopener"><span><span class="long">Demo (sample data)</span><span class="short">Demo</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
             <div class="reading" aria-hidden="true"><span class="reading-name">Hotel Digital Transformation</span><strong data-reading>Overview</strong><i></i></div>
             <a class="project-switch" href="#kalotoys"><span>Next project</span><strong>Kalotoys WMS</strong></a>
         </div>
@@ -364,7 +379,7 @@
                 </div>
             </figure>
             <dl class="story">
-              <div><dt>The problem</dt><dd>A hotel in Ho Chi Minh City was missing its revenue target, while staff believed they had met theirs. Operations and revenue were written on paper, and bookings from OTA, offline and travel agency channels were not managed in one place.<figure class="gallery in-story">
+              <div><dt>The problem</dt><dd>One branch of a three-branch hotel group in Ho Chi Minh City was missing its revenue target, while staff believed they had met theirs. Operations and revenue were written on paper, and bookings from OTA, offline and travel agency channels were not managed in one place.<figure class="gallery in-story">
                 <button class="shot" type="button"><img src="assets/img/hotel-before.jpg" width="1700" height="949" loading="lazy" alt="Before: every channel ended in a handwritten book"><span class="shot-hint">Enlarge</span></button>
                 <figcaption>Before: every channel ended in a handwritten book</figcaption>
               </figure></dd></div>
@@ -505,6 +520,7 @@
           <div class="contact-links">
             <a href="mailto:vpqcuong@gmail.com">vpqcuong@gmail.com</a>
             <a href="https://github.com/MPGranji" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/vuong-phan-quoc-cuong-31875b451/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="tel:+84343149695">+84 343 149 695</a>
           </div>
         </header>
