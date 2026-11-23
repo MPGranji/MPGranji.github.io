@@ -114,10 +114,12 @@ button { color: inherit; font: inherit; cursor: pointer; }
 
 /* Dropdown */
 .menu { position: relative; }
-.menu summary {
+.menu summary, .header-cv {
   display: flex; align-items: center; gap: var(--s2); min-height: var(--tap); padding: 0 var(--s4); border: 1.5px solid var(--line);
   border-radius: 99px; font-size: var(--text-sm); font-weight: 600; white-space: nowrap; list-style: none; cursor: pointer;
 }
+.header-cv { text-decoration: none; }
+.header-cv:hover { border-color: var(--fg); }
 .menu summary::-webkit-details-marker { display: none; }
 .menu summary svg { transition: transform var(--fast); }
 .menu[open] summary svg { transform: rotate(180deg); }
@@ -374,8 +376,8 @@ html:not(.js) .reading { display: none; }
 }
 @media (max-width: 560px) {
   .header-row { gap: var(--s2); }
-  .menu summary { padding: 0 var(--s3); }
-  /* Both panels hang from the right edge of the screen, not of their button. */
+  .menu summary, .header-cv { padding: 0 var(--s3); }
+  /* Align the timeline panel to the right edge of the screen on mobile. */
   .menu { position: static; }
   .menu-panel { top: var(--header); right: var(--s4); }
   .hero-actions .btn { width: 100%; }
