@@ -127,14 +127,6 @@ button { color: inherit; font: inherit; cursor: pointer; }
 .menu-panel a:focus-visible { outline-color: var(--sky); outline-offset: -3px; }
 .swatch { width: 12px; height: 12px; flex: none; border-radius: 50%; background: var(--c); outline: 1px solid rgb(244 214 176 / .35); }
 
-/* Segmented control */
-.lens { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s2); font-size: var(--text-sm); }
-.lens-label { width: 100%; color: var(--muted); }
-.lens button { color: var(--fg); min-height: var(--tap); padding: 0 var(--s4); border: 1.5px solid var(--line); border-radius: 99px; background: transparent; transition: background-color var(--fast), color var(--fast); }
-.lens button:hover { background: var(--wash); }
-.lens button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--bg); font-weight: 600; }
-.lens-note { width: 100%; color: var(--muted); }
-
 /* Tag and toolkit */
 .tag { display: inline-flex; align-items: center; padding: 2px var(--s3); border: 1px solid var(--line); border-radius: 99px; font-size: var(--text-sm); white-space: nowrap; }
 .tools { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; }
@@ -148,8 +140,6 @@ button { color: inherit; font: inherit; cursor: pointer; }
 .project-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); margin-bottom: var(--s3); color: var(--muted); font-size: var(--text-sm); }
 .project h3 { font-size: var(--text-xl); }
 .project-lead { color: var(--body); max-width: 62ch; margin-top: var(--s3); font-size: var(--text-lg); line-height: 1.6; }
-.project-collapsed { margin-top: var(--s3); color: var(--muted); font-size: var(--text-sm); }
-.project-collapsed button { min-height: var(--tap); padding: 0 var(--s2); border: 0; background: none; color: var(--fg); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 
 /* Case story */
 .story { margin-top: var(--s6); }
@@ -434,7 +424,7 @@ html:not(.js) .reading { display: none; }
   .timeline::after { transform: none; }
 }
 @media print {
-  .site-header, .lens, .hero-actions, .thumbs, .shot-hint { display: none !important; }
+  .site-header, .hero-actions, .thumbs, .shot-hint { display: none !important; }
   .js [data-reveal] { opacity: 1; transform: none; }
   .chapter { margin: 0; border-radius: 0; }
 }

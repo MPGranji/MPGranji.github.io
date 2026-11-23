@@ -104,37 +104,6 @@
     $('summary', open).focus();
   });
 
-  /* Reading path: projects keep their place in time, the others fold up */
-  const lensButtons = $$('[data-lens]');
-  const note = $('.lens-note');
-  const notes = {
-    all: 'Showing every project in order.',
-    da: 'Analyst projects are open. The others stay on the timeline, folded.',
-    de: 'Engineering projects are open. The others stay on the timeline, folded.',
-  };
-  function setFolded(project, folded) {
-    $('.project-body', project).hidden = folded;
-    $('.project-collapsed', project).hidden = !folded;
-  }
-  lensButtons.forEach((button) => button.addEventListener('click', () => {
-    const lens = button.dataset.lens;
-    lensButtons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-    $$('.project[data-tracks]').forEach((project) => {
-      setFolded(project, lens !== 'all' && !project.dataset.tracks.split(' ').includes(lens));
-    });
-    note.textContent = notes[lens];
-    queueUpdate();
-  }));
-  $$('[data-unfold]').forEach((button) => button.addEventListener('click', () => {
-    const project = button.closest('.project');
-    const title = $('h3', project);
-    $('.project-main', project).classList.add('is-in');
-    setFolded(project, false);
-    title.tabIndex = -1;
-    title.focus({ preventScroll: true });
-    queueUpdate();
-  }));
-
   /* Galleries and lightbox */
   const lightbox = $('.lightbox');
   const largeImage = $('img', lightbox);
