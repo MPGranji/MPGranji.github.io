@@ -33,6 +33,7 @@
   const current = $('[data-current]');
   const chapterLinks = $$('.timeline-menu .menu-panel a');
   const projectMenu = $('.project-menu');
+  const desktopProjects = matchMedia('(min-width: 1024px)');
   const projectLinks = $$('nav a', projectMenu);
   const projectLinksById = new Map(projectLinks.map((link) => [link.hash.slice(1), link]));
   let active = null;
@@ -99,18 +100,20 @@
 
   /* Dropdowns */
   const menus = $$('.menu');
-  const closeMenus = (except) => menus.forEach((menu) => { if (menu !== except) menu.open = false; });
+  const isDropdown = (menu) => menu !== projectMenu || !desktopProjects.matches;
+  const closeMenu = (menu) => { if (isDropdown(menu)) menu.open = false; };
+  const closeMenus = (except) => menus.forEach((menu) => { if (menu !== except) closeMenu(menu); });
   menus.forEach((menu) => {
-    menu.addEventListener('toggle', () => { if (menu.open) closeMenus(menu); });
-    menu.addEventListener('click', (event) => { if (event.target.closest('a')) menu.open = false; });
+    menu.addEventListener('toggle', () => { if (menu.open && isDropdown(menu)) closeMenus(menu); });
+    menu.addEventListener('click', (event) => { if (event.target.closest('a')) closeMenu(menu); });
     menu.addEventListener('focusout', (event) => {
-      if (event.relatedTarget && !menu.contains(event.relatedTarget)) menu.open = false;
+      if (event.relatedTarget && !menu.contains(event.relatedTarget)) closeMenu(menu);
     });
   });
-  document.addEventListener('click', (event) => { if (!event.target.closest('.menu')) closeMenus(); });
+  document.addEventListener('click', (event) => closeMenus(event.target.closest('.menu')));
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
-    const open = menus.find((menu) => menu.open);
+    const open = menus.find((menu) => menu.open && isDropdown(menu));
     if (!open) return;
     open.open = false;
     $('summary', open).focus();
@@ -125,16 +128,27 @@
     projectLinks.forEach((link) => { link.hidden = !link.textContent.toLowerCase().includes(query); });
     projectEmpty.textContent = projectLinks.every((link) => link.hidden) ? 'No matching projects.' : '';
   }
+  function resetProjectFilter() {
+    if (!projectQuery.value) return;
+    projectQuery.value = '';
+    filterProjects();
+  }
+  function syncProjectMenu() {
+    projectMenu.open = desktopProjects.matches;
+  }
   projectQuery.addEventListener('input', filterProjects);
   projectQuery.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') projectLinks.find((link) => !link.hidden)?.click();
   });
   projectMenu.addEventListener('toggle', () => {
-    if (projectMenu.open) return;
-    projectQuery.value = '';
-    filterProjects();
+    if (!projectMenu.open) resetProjectFilter();
+  });
+  $('nav', projectMenu).addEventListener('click', (event) => {
+    if (event.target.closest('a')) resetProjectFilter();
   });
   projectFilter.hidden = false;
+  desktopProjects.addEventListener('change', syncProjectMenu);
+  syncProjectMenu();
 
   /* Galleries and lightbox */
   const lightbox = $('.lightbox');
