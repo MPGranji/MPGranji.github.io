@@ -131,7 +131,7 @@
       <article class="project case p-sky" id="telecom" aria-labelledby="t-telecom">
         <div class="project-side">
             <h3 id="t-telecom"><span>Telecom Customer 360 Behavioral Analytics</span></h3>
-            <p class="project-what">Viewing activity by contract and search behavior by user.</p>
+            <p class="project-what">Viewing activity by contract and search interest by user.</p>
             <p class="project-meta"><span>Dec 2025</span><span class="tag">Personal project</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/project-reports/Customer_360_Behavioral_Analytics.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
               <a class="is-demo" href="https://app.powerbi.com/view?r=eyJrIjoiOGZmMGY1ZDktM2JlZC00YzAwLTg1YjUtNzhkY2RkMWZmZWExIiwidCI6IjZhYzJhZDA2LTY5MmMtNDY2My1iN2FmLWE5ZmYyYTg2NmQwYyIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener"><span><span class="long">Live dashboard</span><span class="short">Dashboard</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a>
@@ -139,32 +139,34 @@
             <div class="reading" aria-hidden="true"><span class="reading-name">Telecom Customer 360</span><strong data-reading>Overview</strong><i></i></div>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">I processed 48.5 million JSON viewing records and 2.37 million Parquet search records in PySpark, then built two Power BI pages on the resulting MySQL datasets.</p>
+          <p class="project-lead">Showed a content team that 71.64% of 1.92 million contracts watched on 15 or more days in April 2022, and that 69.13% of returning users changed their top search category, by turning 50 million log records into two Power BI views.</p>
           <div class="project-body">
             <figure class="gallery">
-                <button class="shot" type="button"><img src="../assets/img/telecom-search.jpg" width="1700" height="954" loading="lazy" alt="Power BI: search genres and shifts between June 1–14 and July 1–14, 2022"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Power BI: search genres and shifts between June 1–14 and July 1–14, 2022</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/telecom-viewing.jpg" width="1682" height="1067" loading="lazy" alt="Viewing page: 71.64% of contracts were highly active, and TV led watch time almost everywhere (content labels in Vietnamese)"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Viewing page: 71.64% of contracts were highly active, and TV led watch time almost everywhere (content labels in Vietnamese)</figcaption>
                 <div class="thumbs">
-                  <button type="button" aria-pressed="true" data-src="../assets/img/telecom-search.jpg" data-caption="Power BI: search genres and shifts between June 1–14 and July 1–14, 2022"><img src="../assets/thumb/telecom-search.jpg" width="320" height="200" loading="lazy" alt="">Search behavior</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/telecom-viewing.jpg" data-caption="Power BI: activity levels and most-watched content in April"><img src="../assets/thumb/telecom-viewing.jpg" width="320" height="200" loading="lazy" alt="">Viewing behavior</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/telecom-pipeline.jpg" data-caption="From JSON and Parquet logs through Spark and MySQL to Power BI"><img src="../assets/thumb/telecom-pipeline.jpg" width="320" height="200" loading="lazy" alt="">Architecture</button>
+                  <button type="button" aria-pressed="true" data-src="../assets/img/telecom-viewing.jpg" data-caption="Viewing page: 71.64% of contracts were highly active, and TV led watch time almost everywhere (content labels in Vietnamese)"><img src="../assets/thumb/telecom-viewing.jpg" width="320" height="200" loading="lazy" alt="">Viewing</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/telecom-search.jpg" data-caption="Search page: 69.13% of users changed their top category; Drama to C Drama was the largest shift"><img src="../assets/thumb/telecom-search.jpg" width="320" height="200" loading="lazy" alt="">Search</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/telecom-pipeline.jpg" data-caption="Spark reads both logs, OpenAI labels search keywords, and MySQL feeds Power BI"><img src="../assets/thumb/telecom-pipeline.jpg" width="320" height="200" loading="lazy" alt="">Architecture</button>
                 </div>
             </figure>
             <dl class="story">
-              <div><dt>The problem</dt><dd>The viewing logs identify subscriptions by contract, while the search logs identify people by user ID. I kept those two levels of detail separate so each dashboard could answer its own question.<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/telecom-example.jpg" width="1600" height="450" loading="lazy" alt="A worked example: active days on the left, change of interest on the right"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>A worked example: active days on the left, change of interest on the right</figcaption>
+              <div><dt>Context</dt><dd>A TV and streaming service wanted to know how often customers watch, what they spend their time on, and whether their search interests shift between periods. Viewing logs identify subscriptions by contract, while search logs identify people by user ID, so each question needed its own dataset.<figure class="gallery in-story">
+                <button class="shot" type="button"><img src="../assets/img/telecom-example.png" width="1600" height="500" loading="lazy" alt="Active days count each day once; a user’s category is the genre of their most-searched keyword"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Active days count each day once; a user’s category is the genre of their most-searched keyword</figcaption>
               </figure></dd></div>
-              <div><dt>What I did</dt><dd><ul>
-                <li>Aggregated viewing time and active days by contract, then grouped contracts by viewing activity.</li>
-                <li>Ranked search terms per user and period with Spark SQL’s ROW_NUMBER, deduplicated keywords in Pandas, and classified them in batches with GPT-4o-mini.</li>
-                <li>Loaded the contract-level and user-level tables into MySQL via JDBC. The search table joins users present in both periods.</li>
-              </ul></dd></div>
-              <div><dt>How data moves</dt><dd><ol class="flow"><li>JSON and Parquet logs</li><li>PySpark</li><li>Contract and user datasets</li><li>MySQL</li><li>Power BI</li></ol><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/telecom-steps.jpg" width="1600" height="955" loading="lazy" alt="The steps of the viewing flow and the search flow"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The steps of the viewing flow and the search flow</figcaption>
+              <div><dt>My role</dt><dd>Solo project: pipeline, metric definitions and dashboard.</dd></div>
+              <div><dt>Approach</dt><dd><ul>
+                <li>Kept viewing at contract level and search at user level, so no metric mixes the two kinds of identity.</li>
+                <li>Defined activity as distinct viewing days, with 15 or more in April counting as highly active, and grouped app codes into five content groups.</li>
+                <li>Ranked each user’s keywords with Spark SQL’s ROW_NUMBER, then sent only the distinct top keywords to GPT-4o-mini in batches for genre labels.</li>
+                <li>Loaded the contract-level and user-level tables into MySQL over JDBC for Power BI.</li>
+              </ul><figure class="gallery in-story">
+                <button class="shot" type="button"><img src="../assets/img/telecom-steps.png" width="1600" height="790" loading="lazy" alt="Viewing is summarized per contract and search per user"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Viewing is summarized per contract and search per user</figcaption>
               </figure></dd></div>
-              <div><dt>The result</dt><dd>The viewing page covers about 1.92 million contracts. Among the 86,172 users with search logs in both periods (June 1–14 and July 1–14, 2022), 59,570 (69.13%) changed their top search category.</dd></div>
+              <div><dt>Result</dt><dd>TV led watch time for 97.15% of all contracts. Among the 86,172 users who searched in both 1–14 June and 1–14 July 2022, 59,570 (69.13%) changed their top category. I suggested prioritizing TV in a homepage content review and testing C Drama suggestions for users moving from Drama.</dd></div>
+              <div><dt>Limits</dt><dd>When two keywords tie for a user’s top rank, the pipeline does not break the tie.</dd></div>
             </dl>
           </div>
         </div>
@@ -188,7 +190,7 @@
       <article class="project case p-sky" id="recruitment" aria-labelledby="t-recruitment">
         <div class="project-side">
             <h3 id="t-recruitment"><span class="project-no" aria-hidden="true">01</span><span>Recruitment Data Platform</span></h3>
-            <p class="project-what">Kafka event ingestion and hourly recruitment metrics in MySQL.</p>
+            <p class="project-what">Hourly job-ad metrics from a stream of recruitment events.</p>
             <p class="project-meta"><span>May 2026</span><span class="tag">Personal project</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/project-reports/recruitment.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
               <a class="is-code" href="https://github.com/MPGranji/project_de-recruitment" target="_blank" rel="noopener"><span><span class="long">Source code</span><span class="short">Code</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
@@ -196,29 +198,31 @@
             <a class="project-switch" href="#banking"><span>Next project</span><strong>Retail Banking Lakehouse</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">I built a pipeline that ingests simulated recruitment events continuously, then runs a separate batch job every minute to aggregate six hourly KPIs.</p>
+          <p class="project-lead">Replaced manual event counting with six hourly KPIs per job ad and channel, using a Kafka and Spark pipeline that ingests events continuously and aggregates only the new ones every minute.</p>
           <div class="project-body">
             <figure class="gallery">
-                <button class="shot" type="button"><img src="../assets/img/recruitment-architecture.jpg" width="1660" height="948" loading="lazy" alt="Kafka, Spark streaming, Cassandra, Airflow batch jobs and MySQL"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Kafka, Spark streaming, Cassandra, Airflow batch jobs and MySQL</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/recruitment-architecture.png" width="1600" height="700" loading="lazy" alt="Streaming ingestion into Cassandra, then a one-minute batch into MySQL"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Streaming ingestion into Cassandra, then a one-minute batch into MySQL</figcaption>
                 <div class="thumbs">
-                  <button type="button" aria-pressed="true" data-src="../assets/img/recruitment-architecture.jpg" data-caption="Kafka, Spark streaming, Cassandra, Airflow batch jobs and MySQL"><img src="../assets/thumb/recruitment-architecture.jpg" width="320" height="200" loading="lazy" alt="">Architecture</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/recruitment-model.jpg" data-caption="Event log, job table and the hourly reporting table"><img src="../assets/thumb/recruitment-model.jpg" width="320" height="200" loading="lazy" alt="">Data model</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/recruitment-airflow.jpg" data-caption="Successful scheduled runs of the batch job in Airflow"><img src="../assets/thumb/recruitment-airflow.jpg" width="320" height="200" loading="lazy" alt="">Airflow runs</button>
+                  <button type="button" aria-pressed="true" data-src="../assets/img/recruitment-architecture.png" data-caption="Streaming ingestion into Cassandra, then a one-minute batch into MySQL"><img src="../assets/thumb/recruitment-architecture.png" width="320" height="200" loading="lazy" alt="">Architecture</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/recruitment-model.png" data-caption="Event log in, hourly KPI table out, with company IDs joined from the job table"><img src="../assets/thumb/recruitment-model.png" width="320" height="200" loading="lazy" alt="">Data model</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/recruitment-airflow.jpg" data-caption="The batch DAG in Airflow, scheduled every minute; two runs were in progress when captured"><img src="../assets/thumb/recruitment-airflow.jpg" width="320" height="200" loading="lazy" alt="">Airflow runs</button>
                 </div>
             </figure>
             <dl class="story">
-              <div><dt>The problem</dt><dd>Clicks, applications, and spend need a consistent reporting grain. The pipeline groups them by hour, job, publisher, campaign, and group.</dd></div>
-              <div><dt>What I did</dt><dd><ul>
-                <li>Parsed simulated Kafka JSON events against an explicit schema in Spark Structured Streaming and wrote the event log to Cassandra with checkpointing.</li>
-                <li>Selected events from Cassandra using a MySQL timestamp high-water mark, joined job metadata to add company IDs, and wrote the aggregated KPIs to MySQL.</li>
-                <li>Scheduled the incremental PySpark job every minute in Apache Airflow and ran the stack with Docker Compose.</li>
-              </ul></dd></div>
-              <div><dt>How data moves</dt><dd><ol class="flow"><li>Kafka</li><li>Spark streaming</li><li>Cassandra</li><li>Airflow and PySpark</li><li>MySQL</li></ol><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/recruitment-batch.jpg" width="1700" height="680" loading="lazy" alt="The incremental job: check, filter, aggregate, join and write"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The incremental job: check, filter, aggregate, join and write</figcaption>
+              <div><dt>Context</dt><dd>A job ad can run on several channels at once. To compare channels within the same hour, a recruitment team had to group raw clicks and applications by ad, channel and hour for every report. The project automates that table, using simulated events.</dd></div>
+              <div><dt>My role</dt><dd>Solo project.</dd></div>
+              <div><dt>Approach</dt><dd><ul>
+                <li>Parsed Kafka JSON against an explicit schema in Spark Structured Streaming and checkpointed progress, so a restarted stream resumes where it stopped.</li>
+                <li>Read only events newer than a high-water mark stored in MySQL, so each run processes new data instead of rescanning the whole log.</li>
+                <li>Defined six KPIs per hour, job, publisher, campaign and group: clicks, conversions, qualified and disqualified applications, hourly spend and average bid. A join to the job table adds company IDs.</li>
+                <li>Scheduled the batch every minute in Airflow and ran the stack with Docker Compose.</li>
+              </ul><figure class="gallery in-story">
+                <button class="shot" type="button"><img src="../assets/img/recruitment-batch.png" width="1600" height="470" loading="lazy" alt="Each run checks for new events, then filters, aggregates, joins and appends"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Each run checks for new events, then filters, aggregates, joins and appends</figcaption>
               </figure></dd></div>
-              <div><dt>The result</dt><dd>I checked the KPI formulas against 20 logged events from one job, publisher, campaign, and group in a single hour. The batch job appends its results, so an hour can have multiple output rows when its events span batches.</dd></div>
+              <div><dt>Result</dt><dd>Recruiters get an hourly table they can filter by job, channel, campaign and group. I verified the KPI formulas by recomputing 20 logged events from one group and hour: 10 clicks, 30.00 spend and a 1.50 average bid.</dd></div>
+              <div><dt>Limits</dt><dd>Results are appended, so an hour whose events arrive in two batches gets two rows and needs a final sum when reported. All events are simulated.</dd></div>
             </dl>
           </div>
         </div>
@@ -227,43 +231,39 @@
       <article class="project case p-sand" id="banking" aria-labelledby="t-banking">
         <div class="project-side">
             <h3 id="t-banking"><span class="project-no" aria-hidden="true">02</span><span>Retail Banking Customer 360 Lakehouse</span></h3>
-            <p class="project-what">Historized customer dimensions, validated marts, and masked reporting views.</p>
-            <p class="project-meta"><span>Jul 2026</span><span class="tag">Personal project</span></p>
+            <p class="project-what">Historized customer dimensions, validated marts and masked reporting views.</p>
+            <p class="project-meta"><span>Jul 2026</span><span class="tag">Course project</span><span class="tag">Top 3 in cohort</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/project-reports/Bao_cao_Customer_360_Lakehouse_Banking.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
               <a class="is-code" href="https://github.com/MPGranji/retail-banking-customer360-lakehouse" target="_blank" rel="noopener"><span><span class="long">Source code</span><span class="short">Code</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
             <div class="reading" aria-hidden="true"><span class="reading-name">Retail Banking Lakehouse</span><strong data-reading>Overview</strong><i></i></div>
             <a class="project-switch" href="#recruitment"><span>Previous project</span><strong>Recruitment Data Platform</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">I built a Customer 360 lakehouse with Spark, Iceberg, and MinIO and modeled a current mart for 10,000 simulated retail banking customers.</p>
+          <p class="project-lead">Built a Customer 360 lakehouse that gives marketing one consistent, masked row per customer per day for 10,000 simulated banking customers. It was recognized as a Top 3 project in the COLE banking data engineering course.</p>
           <div class="project-body">
             <figure class="gallery">
-                <button class="shot" type="button"><img src="../assets/img/banking-architecture.jpg" width="1700" height="956" loading="lazy" alt="From Oracle and PostgreSQL through Bronze, Silver and Gold to a masked sandbox"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>From Oracle and PostgreSQL through Bronze, Silver and Gold to a masked sandbox</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/banking-architecture.png" width="1600" height="690" loading="lazy" alt="Three source systems become one masked customer view, rebuilt daily"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Three source systems become one masked customer view, rebuilt daily</figcaption>
                 <div class="thumbs">
-                  <button type="button" aria-pressed="true" data-src="../assets/img/banking-architecture.jpg" data-caption="From Oracle and PostgreSQL through Bronze, Silver and Gold to a masked sandbox"><img src="../assets/thumb/banking-architecture.jpg" width="320" height="200" loading="lazy" alt="">Architecture</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/banking-airflow.jpg" data-caption="The lakehouse DAGs and their runs in Airflow"><img src="../assets/thumb/banking-airflow.jpg" width="320" height="200" loading="lazy" alt="">Airflow runs</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/banking-serving.jpg" data-caption="Superset dashboard serving masked Customer 360 marts"><img src="../assets/thumb/banking-serving.jpg" width="320" height="200" loading="lazy" alt="">Superset dashboard</button>
+                  <button type="button" aria-pressed="true" data-src="../assets/img/banking-architecture.png" data-caption="Three source systems become one masked customer view, rebuilt daily"><img src="../assets/thumb/banking-architecture.png" width="320" height="200" loading="lazy" alt="">Architecture</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/banking-serving.jpg" data-caption="Superset demo on the masked mart: RFM segments, churn risk and cross-sell for 10,000 synthetic customers"><img src="../assets/thumb/banking-serving.jpg" width="320" height="200" loading="lazy" alt="">Superset dashboard</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/banking-airflow.jpg" data-caption="The lakehouse DAGs in Airflow; the daily parent DAG is paused between test runs"><img src="../assets/thumb/banking-airflow.jpg" width="320" height="200" loading="lazy" alt="">Airflow DAGs</button>
                 </div>
             </figure>
             <dl class="story">
-              <div><dt>The problem</dt><dd>The project simulates a bank with customer data split across core banking, card, and CRM systems. Reporting needs a consistent customer snapshot, a record of changes, and restricted access to personal data.<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/banking-before.jpg" width="1700" height="956" loading="lazy" alt="Scenario: separate source systems and manual extracts"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Scenario: separate source systems and manual extracts</figcaption>
+              <div><dt>Context</dt><dd>In the simulated bank, customer data sits in core banking (Oracle) and in card and CRM systems (PostgreSQL), with different keys and levels of detail. Marketing needs one customer view, a history of changes and no access to raw personal data. IT wants fewer reports querying the source systems directly.</dd></div>
+              <div><dt>My role</dt><dd>The course provided a starting demo with ingestion and basic analysis. I added dimension history, safe reruns, orchestration, quality checks and the masked serving layer.</dd></div>
+              <div><dt>Approach</dt><dd><ul>
+                <li>Kept history for customer, account, product and branch with SCD Type 2, and joined facts to the version valid at the time, so past reports show customers as they were. Rerunning a batch creates no duplicate versions.</li>
+                <li>Aggregated balances, loans and transactions per customer before joining, so the Gold mart keeps one row per customer and date instead of multiplying rows.</li>
+                <li>Ran eight child DAGs from one daily parent DAG that passes the business date and run ID, and logged 19 quality checks per run to PostgreSQL. A failed critical check fails the run.</li>
+                <li>Masked personal data and limited the marketing role to the sandbox through Trino.</li>
+              </ul><figure class="gallery in-story">
+                <button class="shot" type="button"><img src="../assets/img/banking-dag.png" width="1600" height="720" loading="lazy" alt="Bronze, Silver and Gold run in order for one business date, then masking and quality checks"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Bronze, Silver and Gold run in order for one business date, then masking and quality checks</figcaption>
               </figure></dd></div>
-              <div><dt>What I did</dt><dd><ul>
-                <li>Ingested simulated Oracle Core Banking and PostgreSQL card and CRM data via JDBC into Bronze, Silver, and Gold layers.</li>
-                <li>Modeled customer, account, product, and branch history with SCD Type 2. Checked key uniqueness and reconciled balances in Trino SQL.</li>
-                <li>Configured daily ETL in Apache Airflow, masked personally identifiable information (PII), and restricted marketing access to the sandbox using Trino roles.</li>
-              </ul></dd></div>
-              <div><dt>How data moves</dt><dd><ol class="flow"><li>Oracle and PostgreSQL</li><li>Bronze</li><li>Silver</li><li>Gold</li><li>Masked sandbox</li><li>Trino and Superset</li></ol><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/banking-dag.jpg" width="1700" height="956" loading="lazy" alt="The daily run, ending in masking and quality checks"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The daily run, ending in masking and quality checks</figcaption>
-              </figure></dd></div>
-              <div><dt>The result</dt><dd>In one manually triggered acceptance run, all eight child DAGs succeeded and 19 of 19 data quality checks passed. I built a Superset demo dashboard on the masked marts for RFM segmentation, churn risk, and cross-sell analysis.<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/banking-rfm.jpg" width="1500" height="850" loading="lazy" alt="RFM segments exported from the finished mart, on synthetic data"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>RFM segments exported from the finished mart, on synthetic data</figcaption>
-              </figure></dd></div>
+              <div><dt>Result</dt><dd>In the acceptance run for business date 2026-01-01, all eight child DAGs succeeded and 19 of 19 checks passed. The current mart holds 10,000 unique customers and the history mart 20,000 snapshot rows across two dates.</dd></div>
+              <div><dt>Limits</dt><dd>All data is synthetic, and the acceptance run was triggered manually rather than on the daily schedule.</dd></div>
             </dl>
           </div>
         </div>
@@ -282,8 +282,8 @@
       <article class="project case p-navy" id="fashion" aria-labelledby="t-fashion">
         <div class="project-side">
             <h3 id="t-fashion"><span>Fashion E-commerce</span></h3>
-            <p class="project-what">Search quality and recommendation conversion in a two-person thesis.</p>
-            <p class="project-meta"><span>Defended 24 Aug 2026</span><span class="tag">Team of two</span><span class="tag">Product analytics</span><span class="tag">Mobile app</span></p>
+            <p class="project-what">Search analytics, recommendations and virtual try-on in a two-person thesis.</p>
+            <p class="project-meta"><span>Defended 24 Aug 2026</span><span class="tag">Grade 9.1/10</span><span class="tag">Team of two</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/project-reports/fashion-ecommerce-mobile.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
               <a class="is-demo" href="https://www.youtube.com/watch?v=jNOUzghrpYM" target="_blank" rel="noopener"><span><span class="long">App demo</span><span class="short">App</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a>
               <a class="is-demo" href="https://youtu.be/h9GcLePPjQY" target="_blank" rel="noopener"><span><span class="long">Admin demo</span><span class="short">Admin</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a>
@@ -291,35 +291,31 @@
             <div class="reading" aria-hidden="true"><span class="reading-name">Fashion E-commerce</span><strong data-reading>Overview</strong><i></i></div>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">I built the Search &amp; Recommendation Analytics dashboard in React and TypeScript and the React Native shopping app. The dashboard tracks search zero-result rate, recommendation click-through rate (CTR), and funnel conversion through payment.</p>
+          <p class="project-lead">Built the analytics that show store staff which searches fail and whether recommendations lead to purchases, plus the mobile app’s recommender and virtual try-on, in a thesis graded 9.1/10.</p>
           <div class="project-body">
             <figure class="gallery">
-                <button class="shot" type="button"><img src="../assets/img/thesis-admin.jpg" width="1700" height="1058" loading="lazy" alt="Search analytics dashboard with search volume and zero-result rate"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Search analytics dashboard with search volume and zero-result rate</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/thesis-admin.png" width="1700" height="1016" loading="lazy" alt="Search page: 10.3% of searches in the period returned no products (interface in Vietnamese, demo data)"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Search page: 10.3% of searches in the period returned no products (interface in Vietnamese, demo data)</figcaption>
                 <div class="thumbs">
-                  <button type="button" aria-pressed="true" data-src="../assets/img/thesis-admin.jpg" data-caption="Search analytics dashboard with search volume and zero-result rate"><img src="../assets/thumb/thesis-admin.jpg" width="320" height="200" loading="lazy" alt="">Search analytics</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-app.jpg" data-caption="Product discovery in the mobile app"><img src="../assets/thumb/thesis-app.jpg" width="320" height="200" loading="lazy" alt="">Discovery</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-detail.jpg" data-caption="Product detail, sizing and reviews"><img src="../assets/thumb/thesis-detail.jpg" width="320" height="200" loading="lazy" alt="">Product detail</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-for-you.jpg" data-caption="Recommendations on home, product and cart screens"><img src="../assets/thumb/thesis-for-you.jpg" width="320" height="200" loading="lazy" alt="">For you</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-fitting.jpg" data-caption="Try-on progress, generated photos and video, with faces covered"><img src="../assets/thumb/thesis-fitting.jpg" width="320" height="200" loading="lazy" alt="">Virtual try-on</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-tryon.jpg" data-caption="Processing steps and job states behind the virtual try-on"><img src="../assets/thumb/thesis-tryon.jpg" width="320" height="200" loading="lazy" alt="">Try-on pipeline</button>
+                  <button type="button" aria-pressed="true" data-src="../assets/img/thesis-admin.png" data-caption="Search page: 10.3% of searches in the period returned no products (interface in Vietnamese, demo data)"><img src="../assets/thumb/thesis-admin.png" width="320" height="200" loading="lazy" alt="">Search analytics</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-for-you.jpg" data-caption="Recommendations change with context: Home, Product Detail and Cart"><img src="../assets/thumb/thesis-for-you.jpg" width="320" height="200" loading="lazy" alt="">Recommendations</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-fitting.jpg" data-caption="Virtual try-on: progress, generated photos and video, with faces covered"><img src="../assets/thumb/thesis-fitting.jpg" width="320" height="200" loading="lazy" alt="">Virtual try-on</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-tryon.jpg" data-caption="Behind the try-on: validation, image checks, garment preparation, generation and delivery"><img src="../assets/thumb/thesis-tryon.jpg" width="320" height="200" loading="lazy" alt="">Try-on pipeline</button>
                 </div>
             </figure>
             <dl class="story">
-              <div><dt>The problem</dt><dd>Store staff need to see which searches return no products and where shoppers drop off after seeing a recommendation.</dd></div>
-              <div><dt>What I did</dt><dd><ul>
-                <li>Aggregated search volume, trends, and queries with no results in MongoDB. The zero-result rate is the share of searches that returned no products in the selected period.</li>
-                <li>Tracked recommendation impressions, clicks, add-to-cart events, orders, and payments. Reported CTR, conversion at each step, and net attributed revenue.</li>
-                <li>Added period comparisons and filters for date, placement, and algorithm version across Home, Product Detail, and Cart. My teammate led the customer-facing web app.</li>
+              <div><dt>Context</dt><dd>Store staff need to see which searches return nothing and where shoppers drop off after seeing a recommendation. Shoppers need suggestions that fit what they are looking at, and a way to try clothes on before buying.</dd></div>
+              <div><dt>My role</dt><dd>Team of two. I owned the React Native app, the recommender, virtual try-on and the admin analytics. My teammate built the customer web app and image search.</dd></div>
+              <div><dt>Approach</dt><dd><ul>
+                <li>Defined the zero-result rate as the share of searches in a period that return no products, and listed the failing queries so staff can add synonyms or categories.</li>
+                <li>Logged recommendation impressions, clicks, add-to-cart events, orders and payments, then reported CTR, step conversion and net attributed revenue by placement and algorithm version.</li>
+                <li>Ranked recommendations by context: shopper behavior on Home, item attributes for similar products and outfit compatibility in the Cart.</li>
               </ul></dd></div>
-              <div><dt>How data moves</dt><dd><ol class="flow"><li>Search and recommendation events</li><li>MongoDB aggregations</li><li>Search metrics and funnel</li><li>Web admin dashboard</li></ol><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/thesis-recommend.jpg" width="1344" height="806" loading="lazy" alt="From captured interactions to ranked products, and back"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>From captured interactions to ranked products, and back</figcaption>
+              <div><dt>Result</dt><dd>Staff can compare placements and algorithm versions and see where the funnel drops. In an offline benchmark on 100 Amazon Fashion cases, the Home recommender scored 0.0615 NDCG@5 against 0.0063 for a most-popular baseline.<figure class="gallery in-story">
+                <button class="shot" type="button"><img src="../assets/img/thesis-evaluation.jpg" width="1576" height="473" loading="lazy" alt="Offline ranking quality of Home recommendations against a most-popular baseline"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Offline ranking quality of Home recommendations against a most-popular baseline</figcaption>
               </figure></dd></div>
-              <div><dt>The result</dt><dd>Staff can review zero-result queries, compare recommendation placements, and see where the funnel drops off. In a separate offline benchmark on 100 Amazon Fashion cases, the Home recommender scored 0.0615 NDCG@5 versus 0.0063 for the Most Popular baseline.<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/thesis-evaluation.jpg" width="1576" height="473" loading="lazy" alt="Offline home-screen ranking against the most-popular baseline"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Offline home-screen ranking against the most-popular baseline</figcaption>
-              </figure></dd></div>
+              <div><dt>Limits</dt><dd>Dashboard figures come from demo usage, not a live store.</dd></div>
             </dl>
           </div>
         </div>
@@ -344,80 +340,46 @@
       <article class="project case p-amber" id="hotel" aria-labelledby="t-hotel">
         <div class="project-side">
             <h3 id="t-hotel"><span class="project-no" aria-hidden="true">01</span><span>Hotel Digital Transformation</span></h3>
-            <p class="project-what">Booking reconciliation, occupancy analysis, and embedded Power BI.</p>
-            <p class="project-meta"><span>Eight-week plan</span><span class="tag">Client project</span></p>
+            <p class="project-what">Occupancy analysis, a pricing proposal and an operations app with embedded reporting.</p>
+            <p class="project-meta"><span>2026, eight weeks</span><span class="tag">Client project</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/project-reports/Report_hotel_VPQC.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
               <a class="is-demo" href="https://hotel-digital.vercel.app/" target="_blank" rel="noopener"><span><span class="long">Demo (sample data)</span><span class="short">Demo</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
             <div class="reading" aria-hidden="true"><span class="reading-name">Hotel Digital Transformation</span><strong data-reading>Overview</strong><i></i></div>
             <a class="project-switch" href="#kalotoys"><span>Next project</span><strong>Kalotoys WMS</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">I reconciled one branch’s booking and payment records in Excel, analyzed occupancy by month and bookings by channel, and configured the dashboard refresh for the booking system.</p>
+          <p class="project-lead">Found why a hotel branch missed its revenue target while staff believed they had met theirs: occupancy fell to 17.83% in October, yet 7 in 10 bookings came through front-desk staff. Then helped move its paper bookings into an app with validated Power BI reporting.</p>
           <div class="project-body">
             <figure class="gallery">
-                <button class="shot" type="button"><img src="../assets/img/hotel-overview.jpg" width="1673" height="834" loading="lazy" alt="Hotel overview after sign-in, using demo data"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Hotel overview after sign-in, using demo data</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/hotel-overview.jpg" width="1673" height="834" loading="lazy" alt="Front-desk overview: arrivals, departures and overdue tasks (interface in Vietnamese, demo data)"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Front-desk overview: arrivals, departures and overdue tasks (interface in Vietnamese, demo data)</figcaption>
                 <div class="thumbs">
-                  <button type="button" aria-pressed="true" data-src="../assets/img/hotel-overview.jpg" data-caption="Hotel overview after sign-in, using demo data"><img src="../assets/thumb/hotel-overview.jpg" width="320" height="200" loading="lazy" alt="">Overview</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/hotel-calendar.jpg" data-caption="Room availability by day, using demo data"><img src="../assets/thumb/hotel-calendar.jpg" width="320" height="200" loading="lazy" alt="">Room calendar</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/hotel-bookings.jpg" data-caption="The paper booking book as a searchable screen, using demo data"><img src="../assets/thumb/hotel-bookings.jpg" width="320" height="200" loading="lazy" alt="">Booking book</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/hotel-shift.jpg" data-caption="Front-desk tasks for the shift, using demo data"><img src="../assets/thumb/hotel-shift.jpg" width="320" height="200" loading="lazy" alt="">Today’s shift</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/hotel-monitor.jpg" data-caption="Power BI room monitoring, using demo data"><img src="../assets/thumb/hotel-monitor.jpg" width="320" height="200" loading="lazy" alt="">Power BI</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/hotel-model.jpg" data-caption="Bookings linked to guests, rooms, room types and channels"><img src="../assets/thumb/hotel-model.jpg" width="320" height="200" loading="lazy" alt="">Data model</button>
+                  <button type="button" aria-pressed="true" data-src="../assets/img/hotel-overview.jpg" data-caption="Front-desk overview: arrivals, departures and overdue tasks (interface in Vietnamese, demo data)"><img src="../assets/thumb/hotel-overview.jpg" width="320" height="200" loading="lazy" alt="">Overview</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/hotel-bookings.jpg" data-caption="The paper booking book as a searchable screen (demo data)"><img src="../assets/thumb/hotel-bookings.jpg" width="320" height="200" loading="lazy" alt="">Booking book</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/hotel-monitor.jpg" data-caption="Embedded Power BI room monitoring (demo data)"><img src="../assets/thumb/hotel-monitor.jpg" width="320" height="200" loading="lazy" alt="">Power BI</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/hotel-model.jpg" data-caption="Each booking links one guest, one room and one channel"><img src="../assets/thumb/hotel-model.jpg" width="320" height="200" loading="lazy" alt="">Data model</button>
                 </div>
             </figure>
             <dl class="story">
-              <div><dt>The problem</dt><dd>One branch of a three-branch hotel group in Ho Chi Minh City was missing its revenue target. Paper logs, Excel files, and payments needed to be reconciled before bookings could be compared by room type or channel.<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-before.jpg" width="1700" height="949" loading="lazy" alt="Before: every channel ended in a handwritten book"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Before: every channel ended in a handwritten book</figcaption>
-              </figure></dd></div>
-              <div><dt>The goal</dt><dd>Identify where occupancy and revenue fell short, then centralize bookings and payments to make future reporting and reconciliation easier.</dd></div>
-              <div><dt>The plan</dt><dd><ul>
-                <li>Weeks 1–2: agree on KPI definitions, then digitize and standardize the records.</li>
-                <li>Weeks 3–4: confirm requirements, design and develop a trial system.</li>
-                <li>Weeks 5–8: pilot, train, adjust, evaluate and hand over.</li>
+              <div><dt>Context</dt><dd>A hotel branch in Ho Chi Minh City was missing its revenue KPI while staff believed they had hit their targets. Bookings, stays and payments were written on paper, so nobody could check where the gap came from.</dd></div>
+              <div><dt>My role</dt><dd>Intern on a SonDoong Labs client team. I reconciled the records and ran the analysis, built booking features in the API, and set up the reporting sync.</dd></div>
+              <div><dt>Approach</dt><dd><ul>
+                <li>Standardized booking codes, stay dates and channels across paper logs, Excel files and payment records, so bookings could be compared by room type and channel.</li>
+                <li>Compared room nights, occupancy, room types and channels in Excel PivotTables for June to October 2024.</li>
+                <li>Built booking features in an ASP.NET Core API on Azure App Service with Azure SQL, so each booking and payment is recorded once.</li>
+                <li>Synced Power BI data to Fabric Warehouse through the REST API, checked row counts with DAX before swapping the snapshot in one transaction, and used Direct Lake so the embedded report never reads a half-loaded snapshot.</li>
               </ul><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-plan.jpg" width="1700" height="1133" loading="lazy" alt="The eight-week plan, from standardized data to handover"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The eight-week plan, from standardized data to handover</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/hotel-architecture.png" width="1600" height="640" loading="lazy" alt="Bookings are recorded once; reports read a validated snapshot"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Bookings are recorded once; reports read a validated snapshot</figcaption>
               </figure></dd></div>
-              <div><dt>What the data showed</dt><dd><p class="data-note">I compared room nights, occupancy, room types, and booking channels with Excel PivotTables. The results cover one branch from June to October 2024.</p><ul>
-                <li>Occupancy averaged 46.22% across the five months and fell to 17.83% in October.</li>
-                <li>Standard and Deluxe rooms made up 67.53% of nights sold and 66.84% of room revenue.</li>
-                <li>The staff booking channel accounted for 70.63% of bookings, even as occupancy remained low.</li>
-                <li>Collaborator bookings were priced only about 2.4% above OTA bookings.</li>
-              </ul><div class="figure-pair"><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-occupancy.jpg" width="1070" height="425" loading="lazy" alt="Monthly occupancy at the branch, June to October 2024"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Monthly occupancy at the branch, June to October 2024</figcaption>
-              </figure>
-<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-channels.jpg" width="616" height="451" loading="lazy" alt="Share of bookings by source at the branch"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Share of bookings by source at the branch</figcaption>
-              </figure>
-<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-roomtypes.jpg" width="837" height="410" loading="lazy" alt="Rooms sold by room type at the branch"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Rooms sold by room type at the branch</figcaption>
-              </figure>
-<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-roomrevenue.jpg" width="566" height="451" loading="lazy" alt="Share of room revenue by room type at the branch"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Share of room revenue by room type at the branch</figcaption>
-              </figure></div></dd></div>
-              <div><dt>The proposal</dt><dd>The analysis informed a proposal to raise offline and direct rates by 20% while keeping online travel agency (OTA) rates steady. The proposal drew on booking mix and rate comparisons.<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-pricing.jpg" width="1700" height="927" loading="lazy" alt="The proposed price change by channel"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The proposed price change by channel</figcaption>
+              <div><dt>Result</dt><dd>Occupancy averaged 46.22% from June to October 2024 and fell to 17.83% in October. Front-desk staff took 70.63% of bookings, which explains why staff felt on target while most rooms stayed empty. Standard and Deluxe rooms brought 67.53% of nights and 66.84% of room revenue. The analysis led to a proposal to raise direct (walk-in and phone) rates by 20% and keep OTA rates unchanged.<figure class="gallery in-story">
+                <button class="shot" type="button"><img src="../assets/img/hotel-occupancy.png" width="1600" height="700" loading="lazy" alt="Occupancy fell to 17.83% in October, well below the 46.22% average"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Occupancy fell to 17.83% in October, well below the 46.22% average</figcaption>
+              </figure><figure class="gallery in-story">
+                <button class="shot" type="button"><img src="../assets/img/hotel-channels.png" width="1600" height="700" loading="lazy" alt="Front-desk staff took 7 in 10 bookings; each online channel took 10% or less"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Front-desk staff took 7 in 10 bookings; each online channel took 10% or less</figcaption>
               </figure></dd></div>
-              <div><dt>Technology choices</dt><dd><ul>
-                <li>Azure SQL Database stores operational records, and Azure App Service hosts the ASP.NET Core API.</li>
-                <li>Power BI provides the embedded reporting pages. Microsoft Fabric Warehouse stores the synchronized snapshots.</li>
-              </ul></dd></div>
-              <div><dt>What I did</dt><dd><ul>
-                <li>Built booking features and deployed the ASP.NET Core API to Azure App Service with Azure SQL Database.</li>
-                <li>Synced reporting snapshots from the Power BI REST API to Fabric Warehouse, ran DAX row-count checks, and configured Direct Lake refresh for the embedded report.</li>
-              </ul></dd></div>
-              <div><dt>How data moves</dt><dd><ol class="flow"><li>Front desk</li><li>Next.js</li><li>ASP.NET Core API</li><li>Azure SQL</li><li>Power BI reporting</li><li>Fabric Warehouse</li><li>Embedded report</li></ol><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-architecture.jpg" width="1534" height="598" loading="lazy" alt="The web app, API, database and reporting"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The web app, API, database and reporting</figcaption>
-              </figure></dd></div>
-              <div><dt>Where it stands</dt><dd>The public front-desk demo uses sample data. The separate 20% revenue growth figure was a project target. Measuring it would require comparing actual revenue with a comparable period.</dd></div>
+              <div><dt>Limits</dt><dd>The public demo uses sample data. The hotel’s goal of 20% revenue growth was not measured during the project; that needs actual revenue over a comparable period.</dd></div>
             </dl>
           </div>
         </div>
@@ -426,67 +388,40 @@
       <article class="project case p-navy" id="kalotoys" aria-labelledby="t-kalotoys">
         <div class="project-side">
             <h3 id="t-kalotoys"><span class="project-no" aria-hidden="true">02</span><span>Kalotoys Warehouse Management System</span></h3>
-            <p class="project-what">Stock movements, balance reconciliation, and Power BI inventory reporting.</p>
-            <p class="project-meta"><span>Oct–Nov 2026, four-week plan</span><span class="tag">Client project</span></p>
+            <p class="project-what">Stock movements, balance reconciliation and Power BI inventory reporting.</p>
+            <p class="project-meta"><span>Oct–Nov 2026, four weeks</span><span class="tag">Client project</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/project-reports/Report_Kalotoys_WMS.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
               <a class="is-demo" href="https://kalotoys-wms.vercel.app/tong-quan" target="_blank" rel="noopener"><span><span class="long">Live demo</span><span class="short">Demo</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
             <div class="reading" aria-hidden="true"><span class="reading-name">Kalotoys WMS</span><strong data-reading>Overview</strong><i></i></div>
             <a class="project-switch" href="#hotel"><span>Previous project</span><strong>Hotel Digital Transformation</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">I designed the movement ledger and stock balance model, then built Power BI dashboards to report inventory by material and location.</p>
+          <p class="project-lead">Gave a toy maker’s warehouse a traceable record of every material movement, so balances reconcile with the ledger and low stock shows up before production runs short.</p>
           <div class="project-body">
             <figure class="gallery">
-                <button class="shot" type="button"><img src="../assets/img/wms-overview.jpg" width="1673" height="834" loading="lazy" alt="Warehouse overview in the public demo, using sample data"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Warehouse overview in the public demo, using sample data</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/wms-powerbi.jpg" width="1700" height="839" loading="lazy" alt="Power BI overview, filtered to sheet materials: receipts, issues and closing stock against thresholds (sample data)"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Power BI overview, filtered to sheet materials: receipts, issues and closing stock against thresholds (sample data)</figcaption>
                 <div class="thumbs">
-                  <button type="button" aria-pressed="true" data-src="../assets/img/wms-overview.jpg" data-caption="Warehouse overview in the public demo, using sample data"><img src="../assets/thumb/wms-overview.jpg" width="320" height="200" loading="lazy" alt="">Overview</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/wms-racks.jpg" data-caption="Every rack and slot on one map, using sample data"><img src="../assets/thumb/wms-racks.jpg" width="320" height="200" loading="lazy" alt="">Rack map</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/wms-alerts.jpg" data-caption="Low-stock alerts by material, using sample data"><img src="../assets/thumb/wms-alerts.jpg" width="320" height="200" loading="lazy" alt="">Stock alerts</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/wms-powerbi.jpg" data-caption="Receipts, issues and closing stock in Power BI, using sample data"><img src="../assets/thumb/wms-powerbi.jpg" width="320" height="200" loading="lazy" alt="">Power BI</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/wms-daily.jpg" data-caption="Daily stock by shelf in Power BI, using sample data"><img src="../assets/thumb/wms-daily.jpg" width="320" height="200" loading="lazy" alt="">Daily stock</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/wms-model.jpg" data-caption="The movement ledger kept separate from current balances"><img src="../assets/thumb/wms-model.jpg" width="320" height="200" loading="lazy" alt="">Data model</button>
+                  <button type="button" aria-pressed="true" data-src="../assets/img/wms-powerbi.jpg" data-caption="Power BI overview, filtered to sheet materials: receipts, issues and closing stock against thresholds (sample data)"><img src="../assets/thumb/wms-powerbi.jpg" width="320" height="200" loading="lazy" alt="">Power BI</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/wms-alerts.jpg" data-caption="Low-stock alerts by material, ready to export as a purchase list (sample data)"><img src="../assets/thumb/wms-alerts.jpg" width="320" height="200" loading="lazy" alt="">Stock alerts</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/wms-racks.jpg" data-caption="Every rack and slot on one map (sample data)"><img src="../assets/thumb/wms-racks.jpg" width="320" height="200" loading="lazy" alt="">Rack map</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/wms-model.jpg" data-caption="The movement ledger is kept separate from current balances"><img src="../assets/thumb/wms-model.jpg" width="320" height="200" loading="lazy" alt="">Data model</button>
                 </div>
             </figure>
             <dl class="story">
-              <div><dt>The problem</dt><dd>Kalotoys tracked material in Excel. Inconsistent records for withdrawals made it hard to see which shelf held the material or spot a shortage before production needed it.<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/wms-before.jpg" width="1672" height="941" loading="lazy" alt="Before: shortages were noticed when production needed the material"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Before: shortages were noticed when production needed the material</figcaption>
-              </figure></dd></div>
-              <div><dt>The goal</dt><dd>Track receipts, issues, and balances by material and storage location so staff can reconcile counts and purchasing can identify stock below its threshold.</dd></div>
-              <div><dt>The plan</dt><dd><ul>
-                <li>Week 1: survey the warehouse and standardize codes, units and specifications.</li>
-                <li>Weeks 2–3: design the database, build the app, then run a trial and guide users.</li>
-                <li>Week 4: acceptance and handover.</li>
+              <div><dt>Context</dt><dd>Kalotoys makes personalized wooden toys. Staff took materials from the warehouse without a consistent record of who took what and when, so the Excel stock count drifted and shortages were noticed only when production needed the material.</dd></div>
+              <div><dt>My role</dt><dd>Intern on a SonDoong Labs client team. I designed the ledger and balance model, built the movement forms and the reporting, and ran the reconciliation test.</dd></div>
+              <div><dt>Approach</dt><dd><ul>
+                <li>Defined eight movement types in a data dictionary, with one ledger row per material movement at a storage location.</li>
+                <li>Kept the ledger and current balances in separate MongoDB Atlas collections and wrote each movement with its balance update in one transaction, so the two stay consistent.</li>
+                <li>Recorded a transfer as a paired outgoing and incoming row, so total stock does not change when material moves between slots.</li>
+                <li>Checked the balance before every issue, and synced daily balances to Fabric Warehouse for Power BI in testing.</li>
               </ul><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/wms-plan.jpg" width="1672" height="941" loading="lazy" alt="The four-week implementation plan"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The four-week implementation plan</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/wms-architecture.png" width="1600" height="610" loading="lazy" alt="Every movement updates the ledger and the balance together; reports read daily snapshots"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Every movement updates the ledger and the balance together; reports read daily snapshots</figcaption>
               </figure></dd></div>
-              <div><dt>The data design</dt><dd><ul>
-                <li>Designed an Excel ledger and data dictionary for eight movement types, with one row per material movement at a storage location.</li>
-                <li>Modeled the movement ledger and current balances separately in MongoDB Atlas.</li>
-                <li>Kept one balance per material and slot. Wrote each movement and its balance update in one database transaction.</li>
-                <li>Recorded transfers as paired outgoing and incoming rows to preserve total stock across locations.</li>
-              </ul></dd></div>
-              <div><dt>Technology choices</dt><dd><ul>
-                <li>MongoDB Atlas supports transactions across the ledger and balance collections.</li>
-                <li>Power BI shows receipts, issues, opening and closing stock, and low-stock alerts.</li>
-                <li>In the trial, I synced daily stock snapshots to Microsoft Fabric Warehouse for the reporting layer.</li>
-              </ul></dd></div>
-              <div><dt>The solution</dt><dd><ul>
-                <li>Forms for receipts, issues to the workshop, returns, transfers and adjustments, with the balance checked before issuing.</li>
-                <li>Stock lookup by slot, a rack map, low-stock alerts and export to Excel.</li>
-                <li>Transaction history and an opening, in, out and closing report for reconciliation.</li>
-              </ul></dd></div>
-              <div><dt>How data moves</dt><dd><ol class="flow"><li>Stock movement</li><li>Next.js</li><li>MongoDB Atlas</li><li>Fabric Warehouse</li><li>Power BI</li></ol><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/wms-architecture.jpg" width="1672" height="941" loading="lazy" alt="The architecture as first proposed. The trial now syncs through Fabric Warehouse"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The architecture as first proposed. The trial now syncs through Fabric Warehouse</figcaption>
-              </figure></dd></div>
-              <div><dt>What the reports reveal</dt><dd>In the sample snapshot for 10 November 2026, the report showed 28 occupied slots, six material codes below threshold, and seven locations over the 45-day stock-aging threshold.<figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/wms-movement.jpg" width="797" height="264" loading="lazy" alt="Receipts, issues and closing stock by day, on sample data"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Receipts, issues and closing stock by day, on sample data</figcaption>
-              </figure></dd></div>
-              <div><dt>Where it stands</dt><dd>Balances calculated from the ledger matched recorded stock in the reconciliation test across 660 simulated transactions and 713 ledger rows. The online trial uses sample data.</dd></div>
+              <div><dt>Result</dt><dd>Balances recalculated from the ledger matched the stored balances across 660 simulated transactions (713 ledger rows). On the 10 November 2026 sample snapshot, the reports flagged six materials below threshold and seven locations holding stock longer than 45 days, with 28 of 30 slots in use.</dd></div>
+              <div><dt>Limits</dt><dd>The trial runs on sample data, and the Fabric sync has been tested but is not yet in production.</dd></div>
             </dl>
           </div>
         </div>
