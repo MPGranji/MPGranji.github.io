@@ -114,15 +114,17 @@ button { color: inherit; font: inherit; cursor: pointer; }
 
 /* Dropdown */
 .menu { position: relative; }
-.menu summary, .header-cv {
+.menu summary {
   display: flex; align-items: center; gap: var(--s2); min-height: var(--tap); padding: 0 var(--s4); border: 1.5px solid var(--line);
   border-radius: 99px; font-size: var(--text-sm); font-weight: 600; white-space: nowrap; list-style: none; cursor: pointer;
 }
-.header-cv { text-decoration: none; }
-.header-cv:hover { border-color: var(--fg); }
 .menu summary::-webkit-details-marker { display: none; }
 .menu summary svg { transition: transform var(--fast); }
 .menu[open] summary svg { transform: rotate(180deg); }
+.cv-menu summary:hover { border-color: var(--fg); }
+.cv-menu[open] summary svg { transform: none; }
+.cv-menu .menu-panel { min-width: 0; }
+.cv-menu .menu-panel .icon { color: var(--amber); }
 .menu-panel { position: absolute; top: calc(100% + var(--s2)); right: 0; width: max-content; min-width: 230px; max-width: calc(100vw - 2rem); padding: var(--s2); border-radius: var(--radius-md); background: var(--night); color: var(--white); border: 1px solid var(--steel); animation: drop var(--fast) var(--ease); }
 .menu-panel a { display: flex; align-items: center; gap: var(--s3); min-height: var(--tap); padding: var(--s1) var(--s3); border-radius: var(--radius-sm); font-size: var(--text-sm); text-decoration: none; }
 .menu-panel a:hover, .menu-panel a[aria-current] { background: var(--navy); }
@@ -376,7 +378,7 @@ html:not(.js) .reading { display: none; }
 }
 @media (max-width: 560px) {
   .header-row { gap: var(--s2); }
-  .menu summary, .header-cv { padding: 0 var(--s3); }
+  .menu summary { padding: 0 var(--s3); }
   /* Align the timeline panel to the right edge of the screen on mobile. */
   .menu { position: static; }
   .menu-panel { top: var(--header); right: var(--s4); }
