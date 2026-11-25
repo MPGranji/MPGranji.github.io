@@ -119,6 +119,7 @@ button { color: inherit; font: inherit; cursor: pointer; }
   border-radius: 99px; font-size: var(--text-sm); font-weight: 600; white-space: nowrap; list-style: none; cursor: pointer;
 }
 .menu summary::-webkit-details-marker { display: none; }
+.compact-label { display: none; }
 .menu summary svg { transition: transform var(--fast); }
 .menu[open] summary svg { transform: rotate(180deg); }
 .cv-menu summary:hover { border-color: var(--fg); }
@@ -307,6 +308,9 @@ button { color: inherit; font: inherit; cursor: pointer; }
 .case-index a:hover { transform: translateY(-3px); }
 .case-index b { font: 650 var(--text-xl)/1 var(--display); }
 .case-index span { flex: 1; font: 650 var(--text-lg)/1.3 var(--display); }
+.featured { position: relative; padding-bottom: calc(var(--radius-chapter) + var(--s7)); }
+.featured h2 { margin-bottom: var(--s4); font-size: var(--text-2xl); }
+.case-index.featured-index { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); margin-bottom: 0; }
 
 .case {
   display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; gap: clamp(1.5rem, 3vw, 2.5rem);
@@ -337,7 +341,7 @@ html:not(.js) .reading { display: none; }
 .project-switch { display: flex; flex-direction: column; justify-content: center; min-height: var(--tap); margin-top: var(--s3); padding-top: var(--s2); border-top: 1px solid var(--line); color: var(--p-fg); font-size: var(--text-sm); line-height: 1.4; text-decoration: none; }
 .project-switch:hover strong { text-decoration: underline; text-underline-offset: 3px; }
 
-.project-what { margin-top: var(--s2); font-size: var(--text-sm); line-height: 1.5; }
+.project-what, .project-note { margin-top: var(--s2); font-size: var(--text-sm); line-height: 1.5; }
 .project-side .links a { flex: 1 1 auto; justify-content: space-between; }
 .project-side .links .is-pdf { flex-basis: 100%; background: var(--p-fg); color: var(--p); }
 .project-side .links .is-pdf:hover { background: transparent; color: var(--p-fg); }
@@ -386,6 +390,13 @@ html:not(.js) .reading { display: none; }
   .journey a { grid-template-columns: minmax(0, 1fr); gap: 0; padding-inline: 1.3rem; }
   .shot { aspect-ratio: 4 / 3; }
   .thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  .header-row { gap: var(--s1); }
+  .timeline-menu summary { padding-inline: var(--s2); }
+  .timeline-menu [data-current], .cv-menu summary .icon { display: none; }
+  .timeline-menu .compact-label { display: inline; }
+  .cv-menu summary { min-width: var(--tap); justify-content: center; }
 }
 /* Cases on smaller and shorter screens */
 @media (max-width: 1080px) {

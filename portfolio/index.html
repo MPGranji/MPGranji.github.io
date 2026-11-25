@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Bricolage+Grotesque:wght@600;650&amp;display=swap">
-  <link rel="stylesheet" href="../styles.css?v=thumbs-wrap">
+  <link rel="stylesheet" href="../styles.css?v=featured-projects">
   <script>document.documentElement.classList.add('js')</script>
   <script src="../main.js" defer></script>
 </head>
@@ -43,7 +43,7 @@
   <div class="container header-row">
     <a class="brand" href="#top">Quốc Cường</a>
     <details class="menu timeline-menu">
-      <summary><span data-current>Timeline</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+      <summary><span data-current>Timeline</span><span class="compact-label">Timeline</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
       <nav class="menu-panel" aria-label="Chapters">
         <a href="#foundations"><i class="swatch" style="--c:var(--night)"></i>Since 2022: Foundations</a>
         <a href="#analysis"><i class="swatch" style="--c:var(--navy)"></i>Dec 2025: Data analysis</a>
@@ -77,7 +77,7 @@
         <h1 id="hero-title">Analytics <em>Engineer</em></h1>
         <p class="hero-intro">I’m a final-year Software Engineering student at Can Tho University. I build ETL pipelines, model and validate data with SQL, and develop dashboards. These case studies explain what I built, how I checked the data, and what the results showed.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#analysis">Explore projects <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+          <a class="btn btn-primary" href="#featured">Explore projects <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
           <a class="btn" href="#internship">View internship work</a>
         </div>
       </div>
@@ -94,6 +94,17 @@
       </nav>
     </div>
   </section>
+
+  <nav class="featured t-night" id="featured" aria-labelledby="h-featured">
+    <div class="container">
+      <h2 id="h-featured">Featured projects</h2>
+      <div class="case-index featured-index">
+        <a class="p-amber" href="#hotel"><span><strong>Hotel Digital Transformation</strong><small>17.83% occupancy in October and a proposed rate change</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="p-sand" href="#banking"><span><strong>Retail Banking Lakehouse</strong><small>10,000 simulated customers and 19 quality checks passed</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="p-sky" href="#telecom"><span><strong>Telecom Customer 360</strong><small>50 million log records turned into two Power BI views</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+      </div>
+    </div>
+  </nav>
 
   <!-- Since 2022 -->
   <section class="chapter t-night" id="foundations" data-theme="t-night" data-label="Since 2022" aria-labelledby="h-foundations">
@@ -139,7 +150,7 @@
             <div class="reading" aria-hidden="true"><span class="reading-name">Telecom Customer 360</span><strong data-reading>Overview</strong><i></i></div>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Turned 50 million log records into two Power BI views for a content team. They showed that 71.64% of contracts watched on 15 or more days in April 2022, and that 69.13% of returning users changed their top search category.</p>
+          <p class="project-lead">Turned 50 million log records into two Power BI views. In April 2022, 71.64% of contracts logged viewing on at least 15 days. Across the June and July search periods, 69.13% of returning users changed their top category.</p>
           <div class="project-body">
             <figure class="gallery">
                 <button class="shot" type="button"><img src="../assets/img/telecom-viewing.jpg" width="1682" height="1067" loading="lazy" alt="Viewing page: 71.64% of contracts were highly active, and TV led watch time almost everywhere (content labels in Vietnamese)"><span class="shot-hint">Enlarge</span></button>
@@ -291,7 +302,7 @@
             <div class="reading" aria-hidden="true"><span class="reading-name">Fashion E-commerce</span><strong data-reading>Overview</strong><i></i></div>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">In a thesis graded 9.1/10, built admin analytics that show which searches fail and whether recommendations lead to purchases, along with the mobile app’s recommender and virtual try-on.</p>
+          <p class="project-lead">Built admin dashboards that track failed searches and attribute purchases to recommendation interactions. I also built the mobile app’s recommender and virtual try-on. The thesis earned 9.1/10.</p>
           <div class="project-body">
             <figure class="gallery">
                 <button class="shot" type="button"><img src="../assets/img/thesis-admin.webp" width="1623" height="969" loading="lazy" alt="Search page, translated to English (demo data): 10.3% of searches returned no products."><span class="shot-hint">Enlarge</span></button>
@@ -350,12 +361,13 @@
             <p class="project-what">Occupancy analysis, a pricing proposal and an operations app with embedded reporting.</p>
             <p class="project-meta"><span>2026, eight weeks</span><span class="tag">Client project</span></p>
             <div class="links"><a class="is-pdf" href="https://raw.githubusercontent.com/MPGranji/MPGranji/main/project-reports/Report_hotel_VPQC.pdf"><span><span class="long">Download PDF</span><span class="short">PDF</span></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></a>
-              <a class="is-demo" href="https://hotel-digital.vercel.app/" target="_blank" rel="noopener"><span><span class="long">Demo (sample data)</span><span class="short">Demo</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
+              <a class="is-demo" href="https://hotel-digital.vercel.app/" target="_blank" rel="noopener" aria-describedby="hotel-demo-note"><span><span class="long">Demo (sample data)</span><span class="short">Demo</span></span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
+            <p class="project-note" id="hotel-demo-note">Demo account on the login page.</p>
             <div class="reading" aria-hidden="true"><span class="reading-name">Hotel Digital Transformation</span><strong data-reading>Overview</strong><i></i></div>
             <a class="project-switch" href="#kalotoys"><span>Next project</span><strong>Kalotoys WMS</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Showed why a hotel branch missed its revenue target: occupancy fell to 17.83% in October, while staff felt on target because they took 7 in 10 bookings. Then helped replace its paper bookings with an app and checked Power BI reports.</p>
+          <p class="project-lead">Found that occupancy fell to 17.83% in October 2024 and proposed a change to direct booking rates. I also helped digitize the paper booking records and validate the Power BI reports.</p>
           <div class="project-body">
             <figure class="gallery">
                 <button class="shot" type="button"><img src="../assets/img/hotel-overview.jpg" width="1673" height="834" loading="lazy" alt="Front-desk overview: arrivals, departures and overdue tasks (interface in Vietnamese, demo data)"><span class="shot-hint">Enlarge</span></button>
@@ -369,7 +381,7 @@
                 </div>
             </figure>
             <dl class="story">
-              <div><dt>Context</dt><dd>A hotel branch in Ho Chi Minh City was missing its revenue KPI while staff believed they had hit their targets. Bookings, stays and payments were written on paper, so nobody could check where the gap came from.</dd></div>
+              <div><dt>Context</dt><dd>A hotel branch in Ho Chi Minh City was missing its revenue target while staff believed they had hit their targets. Paper records made it hard to compare bookings, stays and payments.</dd></div>
               <div><dt>My role</dt><dd>Intern on a SonDoong Labs client team. I reconciled the records and ran the analysis, built booking features in the API, and set up the reporting sync.</dd></div>
               <div><dt>Approach</dt><dd><ul>
                 <li>Standardized booking codes, stay dates and channels across paper logs, Excel files and payment records, so bookings could be compared by room type and channel.</li>
@@ -381,7 +393,7 @@
                 <button class="shot" type="button"><img src="../assets/img/hotel-architecture.webp" width="2008" height="783" loading="lazy" alt="First version, before the Fabric sync above: the app embedded Power BI reports in Import mode, so they were not real-time."><span class="shot-hint">Enlarge</span></button>
                 <figcaption>First version, before the Fabric sync above: the app embedded Power BI reports in Import mode, so they were not real-time.</figcaption>
               </figure></dd></div>
-              <div><dt>Result</dt><dd>Occupancy averaged 46.22% from June to October 2024 and fell to 17.83% in October. Front-desk staff took 70.63% of bookings, which explains why staff felt on target while most rooms stayed empty. Standard and Deluxe rooms brought 67.53% of nights and 66.84% of room revenue. The analysis led to a proposal to raise direct (walk-in and phone) rates by 20% and keep OTA rates unchanged.<figure class="gallery in-story">
+              <div><dt>Result</dt><dd>Occupancy averaged 46.22% from June to October 2024 and fell to 17.83% in October. Front-desk staff handled 70.63% of bookings over the period. Standard and Deluxe rooms accounted for 67.53% of room nights and 66.84% of room revenue. I proposed raising walk-in and phone rates by 20% while keeping online travel agency rates unchanged.<figure class="gallery in-story">
                 <button class="shot" type="button"><img src="../assets/img/hotel-occupancy.webp" width="1989" height="790" loading="lazy" alt="Occupancy fell to 17.83% in October, well below the 46.22% average"><span class="shot-hint">Enlarge</span></button>
                 <figcaption>Occupancy fell to 17.83% in October, well below the 46.22% average</figcaption>
               </figure><figure class="gallery in-story">
@@ -405,7 +417,7 @@
             <a class="project-switch" href="#hotel"><span>Previous project</span><strong>Hotel Digital Transformation</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Gave a toy maker’s warehouse a traceable record of every material movement, so balances reconcile with the ledger and low stock shows up before production runs short.</p>
+          <p class="project-lead">Built a warehouse ledger and low-stock reports for a toy maker. Across 660 simulated transactions, balances recalculated from the ledger matched the stored inventory balances.</p>
           <div class="project-body">
             <figure class="gallery">
                 <button class="shot" type="button"><img src="../assets/img/wms-powerbi.jpg" width="1700" height="839" loading="lazy" alt="Power BI overview, filtered to sheet materials: receipts, issues and closing stock against thresholds (sample data)"><span class="shot-hint">Enlarge</span></button>
@@ -446,7 +458,7 @@
         <header>
           <span class="chapter-date">Get in touch</span>
           <h2 id="h-next">Contact and CV</h2>
-          <p class="chapter-story">I’m looking for a Data Analyst or Data Engineer role where I can build and check the data models, pipelines and reports a team relies on.</p>
+          <p class="chapter-story">I’m open to roles in analytics engineering, data analysis, and data engineering.</p>
           <div class="contact-links">
             <a href="mailto:vpqcuong@gmail.com">vpqcuong@gmail.com</a>
             <a href="https://github.com/MPGranji" target="_blank" rel="noopener">GitHub</a>
