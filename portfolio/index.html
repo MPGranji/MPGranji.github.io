@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Bricolage+Grotesque:wght@600;650&amp;display=swap">
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=thumbs-wrap">
   <script>document.documentElement.classList.add('js')</script>
   <script src="../main.js" defer></script>
 </head>
@@ -298,7 +298,11 @@
                 <figcaption>Search page, translated to English (demo data): 10.3% of searches returned no products.</figcaption>
                 <div class="thumbs">
                   <button type="button" aria-pressed="true" data-src="../assets/img/thesis-admin.webp" data-caption="Search page, translated to English (demo data): 10.3% of searches returned no products."><img src="../assets/thumb/thesis-admin.webp" width="320" height="200" loading="lazy" alt="">Search analytics</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-for-you.jpg" data-caption="Recommendations change with context: Home, Product Detail and Cart"><img src="../assets/thumb/thesis-for-you.jpg" width="320" height="200" loading="lazy" alt="">Recommendations</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-rec-analytics.jpg" data-caption="Recommendation page: the funnel from impressions to payment and CTR by day (interface in Vietnamese, demo data)"><img src="../assets/thumb/thesis-rec-analytics.jpg" width="320" height="200" loading="lazy" alt="">Recommendation analytics</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-browse.jpg" data-caption="Mobile app: pick a wardrobe, then browse by category (interface in Vietnamese, faces covered)"><img src="../assets/thumb/thesis-browse.jpg" width="320" height="200" loading="lazy" alt="">Product browsing</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-search.jpg" data-caption="Mobile search: suggestions while typing, then results that can be filtered by category"><img src="../assets/thumb/thesis-search.jpg" width="320" height="200" loading="lazy" alt="">Search</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-detail.jpg" data-caption="Product detail: size chart, verified reviews and outfit suggestions"><img src="../assets/thumb/thesis-detail.jpg" width="320" height="200" loading="lazy" alt="">Product detail</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/thesis-for-you.jpg" data-caption="Recommendations change with context: Home, Product Detail and Cart"><img src="../assets/thumb/thesis-for-you.jpg" width="320" height="200" loading="lazy" alt="">Recommender</button>
                   <button type="button" aria-pressed="false" data-src="../assets/img/thesis-fitting.jpg" data-caption="Virtual try-on: progress, generated photos and video, with faces covered"><img src="../assets/thumb/thesis-fitting.jpg" width="320" height="200" loading="lazy" alt="">Virtual try-on</button>
                   <button type="button" aria-pressed="false" data-src="../assets/img/thesis-tryon.jpg" data-caption="Behind the try-on: validation, image checks, garment preparation, generation and delivery"><img src="../assets/thumb/thesis-tryon.jpg" width="320" height="200" loading="lazy" alt="">Try-on pipeline</button>
                 </div>
@@ -310,7 +314,10 @@
                 <li>Defined the zero-result rate as the share of searches in a period that return no products, and listed the failing queries so staff can add synonyms or categories.</li>
                 <li>Logged recommendation impressions, clicks, add-to-cart events, orders and payments, then reported CTR, step conversion and net attributed revenue by placement and algorithm version.</li>
                 <li>Ranked recommendations by context: shopper behavior on Home, item attributes for similar products and outfit compatibility in the Cart.</li>
-              </ul></dd></div>
+              </ul><figure class="gallery in-story">
+                <button class="shot" type="button"><img src="../assets/img/thesis-architecture.jpg" width="1477" height="1093" loading="lazy" alt="One Node.js and Express API serves the mobile app and web admin, stores data in MongoDB Atlas and sends try-on jobs to a ComfyUI and FastAPI generator"><span class="shot-hint">Enlarge</span></button>
+                <figcaption>One Node.js and Express API serves the mobile app and web admin, stores data in MongoDB Atlas and sends try-on jobs to a ComfyUI and FastAPI generator</figcaption>
+              </figure></dd></div>
               <div><dt>Result</dt><dd>Staff can compare placements and algorithm versions and see where the funnel drops. In an offline benchmark on 100 Amazon Fashion cases, the Home recommender scored 0.0615 NDCG@5 against 0.0063 for a most-popular baseline.<figure class="gallery in-story">
                 <button class="shot" type="button"><img src="../assets/img/thesis-evaluation.jpg" width="1576" height="473" loading="lazy" alt="Offline ranking quality of Home recommendations against a most-popular baseline"><span class="shot-hint">Enlarge</span></button>
                 <figcaption>Offline ranking quality of Home recommendations against a most-popular baseline</figcaption>
