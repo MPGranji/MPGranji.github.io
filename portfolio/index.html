@@ -139,7 +139,7 @@
             <div class="reading" aria-hidden="true"><span class="reading-name">Telecom Customer 360</span><strong data-reading>Overview</strong><i></i></div>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Showed a content team that 71.64% of 1.92 million contracts watched on 15 or more days in April 2022, and that 69.13% of returning users changed their top search category, by turning 50 million log records into two Power BI views.</p>
+          <p class="project-lead">Turned 50 million log records into two Power BI views for a content team. They showed that 71.64% of contracts watched on 15 or more days in April 2022, and that 69.13% of returning users changed their top search category.</p>
           <div class="project-body">
             <figure class="gallery">
                 <button class="shot" type="button"><img src="../assets/img/telecom-viewing.jpg" width="1682" height="1067" loading="lazy" alt="Viewing page: 71.64% of contracts were highly active, and TV led watch time almost everywhere (content labels in Vietnamese)"><span class="shot-hint">Enlarge</span></button>
@@ -198,7 +198,7 @@
             <a class="project-switch" href="#banking"><span>Next project</span><strong>Retail Banking Lakehouse</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Replaced manual event counting with six hourly KPIs per job ad and channel, using a Kafka and Spark pipeline that ingests events continuously and aggregates only the new ones every minute.</p>
+          <p class="project-lead">Built a Kafka and Spark pipeline that turns raw job-ad events into six hourly KPIs per ad and channel, processing only new events every minute instead of recounting the whole log.</p>
           <div class="project-body">
             <figure class="gallery">
                 <button class="shot" type="button"><img src="../assets/img/recruitment-architecture.png" width="1600" height="700" loading="lazy" alt="Streaming ingestion into Cassandra, then a one-minute batch into MySQL"><span class="shot-hint">Enlarge</span></button>
@@ -221,7 +221,7 @@
                 <button class="shot" type="button"><img src="../assets/img/recruitment-batch.webp" width="1983" height="793" loading="lazy" alt="Each run checks for new events, then filters, aggregates, joins and appends"><span class="shot-hint">Enlarge</span></button>
                 <figcaption>Each run checks for new events, then filters, aggregates, joins and appends</figcaption>
               </figure></dd></div>
-              <div><dt>Result</dt><dd>Recruiters get an hourly table they can filter by job, channel, campaign and group. I verified the KPI formulas by recomputing 20 logged events from one group and hour: 10 clicks, 30.00 spend and a 1.50 average bid.</dd></div>
+              <div><dt>Result</dt><dd>The pipeline produces an hourly table that can be filtered by job, channel, campaign and group. I verified the KPI formulas by recomputing 20 logged events from one group and hour: 10 clicks, 30.00 spend and a 1.50 average bid.</dd></div>
               <div><dt>Limits</dt><dd>Results are appended, so an hour whose events arrive in two batches gets two rows and needs a final sum when reported. All events are simulated.</dd></div>
             </dl>
           </div>
@@ -291,13 +291,13 @@
             <div class="reading" aria-hidden="true"><span class="reading-name">Fashion E-commerce</span><strong data-reading>Overview</strong><i></i></div>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Built the analytics that show store staff which searches fail and whether recommendations lead to purchases, plus the mobile app’s recommender and virtual try-on, in a thesis graded 9.1/10.</p>
+          <p class="project-lead">In a thesis graded 9.1/10, built admin analytics that show which searches fail and whether recommendations lead to purchases, along with the mobile app’s recommender and virtual try-on.</p>
           <div class="project-body">
             <figure class="gallery">
-                <button class="shot" type="button"><img src="../assets/img/thesis-admin.webp" width="1623" height="969" loading="lazy" alt="English translation of the demo dashboard. 10.3% of searches returned no products."><span class="shot-hint">Enlarge</span></button>
-                <figcaption>English translation of the demo dashboard. 10.3% of searches returned no products.</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/thesis-admin.webp" width="1623" height="969" loading="lazy" alt="Search page, translated to English (demo data): 10.3% of searches returned no products."><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Search page, translated to English (demo data): 10.3% of searches returned no products.</figcaption>
                 <div class="thumbs">
-                  <button type="button" aria-pressed="true" data-src="../assets/img/thesis-admin.webp" data-caption="English translation of the demo dashboard. 10.3% of searches returned no products."><img src="../assets/thumb/thesis-admin.webp" width="320" height="200" loading="lazy" alt="">Search analytics</button>
+                  <button type="button" aria-pressed="true" data-src="../assets/img/thesis-admin.webp" data-caption="Search page, translated to English (demo data): 10.3% of searches returned no products."><img src="../assets/thumb/thesis-admin.webp" width="320" height="200" loading="lazy" alt="">Search analytics</button>
                   <button type="button" aria-pressed="false" data-src="../assets/img/thesis-for-you.jpg" data-caption="Recommendations change with context: Home, Product Detail and Cart"><img src="../assets/thumb/thesis-for-you.jpg" width="320" height="200" loading="lazy" alt="">Recommendations</button>
                   <button type="button" aria-pressed="false" data-src="../assets/img/thesis-fitting.jpg" data-caption="Virtual try-on: progress, generated photos and video, with faces covered"><img src="../assets/thumb/thesis-fitting.jpg" width="320" height="200" loading="lazy" alt="">Virtual try-on</button>
                   <button type="button" aria-pressed="false" data-src="../assets/img/thesis-tryon.jpg" data-caption="Behind the try-on: validation, image checks, garment preparation, generation and delivery"><img src="../assets/thumb/thesis-tryon.jpg" width="320" height="200" loading="lazy" alt="">Try-on pipeline</button>
@@ -348,7 +348,7 @@
             <a class="project-switch" href="#kalotoys"><span>Next project</span><strong>Kalotoys WMS</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Found why a hotel branch missed its revenue target while staff believed they had met theirs: occupancy fell to 17.83% in October, yet 7 in 10 bookings came through front-desk staff. Then helped move its paper bookings into an app with validated Power BI reporting.</p>
+          <p class="project-lead">Showed why a hotel branch missed its revenue target: occupancy fell to 17.83% in October, while staff felt on target because they took 7 in 10 bookings. Then helped replace its paper bookings with an app and checked Power BI reports.</p>
           <div class="project-body">
             <figure class="gallery">
                 <button class="shot" type="button"><img src="../assets/img/hotel-overview.jpg" width="1673" height="834" loading="lazy" alt="Front-desk overview: arrivals, departures and overdue tasks (interface in Vietnamese, demo data)"><span class="shot-hint">Enlarge</span></button>
@@ -367,17 +367,18 @@
                 <li>Standardized booking codes, stay dates and channels across paper logs, Excel files and payment records, so bookings could be compared by room type and channel.</li>
                 <li>Compared room nights, occupancy, room types and channels in Excel PivotTables for June to October 2024.</li>
                 <li>Built booking features in an ASP.NET Core API on Azure App Service with Azure SQL, so each booking and payment is recorded once.</li>
-                <li>Synced Power BI data to Fabric Warehouse through the REST API, checked row counts with DAX before swapping the snapshot in one transaction, and used Direct Lake so the embedded report never reads a half-loaded snapshot.</li>
+                <li>Synced the Power BI data to Fabric Warehouse through the REST API, checking row counts with DAX before swapping in the new snapshot in one transaction.</li>
+                <li>Switched the embedded report to Direct Lake, so it never reads a half-loaded snapshot and refreshes when a new version arrives.</li>
               </ul><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-architecture.webp" width="2008" height="783" loading="lazy" alt="Before Fabric, the front-desk web app embedded Power BI reports in Import mode."><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Before Fabric, the front-desk web app embedded Power BI reports in Import mode.</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/hotel-architecture.webp" width="2008" height="783" loading="lazy" alt="First version, before the Fabric sync above: the app embedded Power BI reports in Import mode, so they were not real-time."><span class="shot-hint">Enlarge</span></button>
+                <figcaption>First version, before the Fabric sync above: the app embedded Power BI reports in Import mode, so they were not real-time.</figcaption>
               </figure></dd></div>
               <div><dt>Result</dt><dd>Occupancy averaged 46.22% from June to October 2024 and fell to 17.83% in October. Front-desk staff took 70.63% of bookings, which explains why staff felt on target while most rooms stayed empty. Standard and Deluxe rooms brought 67.53% of nights and 66.84% of room revenue. The analysis led to a proposal to raise direct (walk-in and phone) rates by 20% and keep OTA rates unchanged.<figure class="gallery in-story">
                 <button class="shot" type="button"><img src="../assets/img/hotel-occupancy.webp" width="1989" height="790" loading="lazy" alt="Occupancy fell to 17.83% in October, well below the 46.22% average"><span class="shot-hint">Enlarge</span></button>
                 <figcaption>Occupancy fell to 17.83% in October, well below the 46.22% average</figcaption>
               </figure><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/hotel-channels.webp" width="1466" height="1073" loading="lazy" alt="Front-desk staff handled 70.63% of bookings, shown as 71% in the chart."><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Front-desk staff handled 70.63% of bookings, shown as 71% in the chart.</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/hotel-channels.webp" width="1466" height="1073" loading="lazy" alt="Front-desk staff took 70.63% of bookings (71% in the chart); no online channel passed 10%."><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Front-desk staff took 70.63% of bookings (71% in the chart); no online channel passed 10%.</figcaption>
               </figure></dd></div>
               <div><dt>Limits</dt><dd>The public demo uses sample data. The hotel’s goal of 20% revenue growth was not measured during the project; that needs actual revenue over a comparable period.</dd></div>
             </dl>
@@ -415,10 +416,10 @@
                 <li>Defined eight movement types in a data dictionary, with one ledger row per material movement at a storage location.</li>
                 <li>Kept the ledger and current balances in separate MongoDB Atlas collections and wrote each movement with its balance update in one transaction, so the two stay consistent.</li>
                 <li>Recorded a transfer as a paired outgoing and incoming row, so total stock does not change when material moves between slots.</li>
-                <li>Checked the balance before every issue, and synced daily balances to Fabric Warehouse for Power BI in testing.</li>
+                <li>Checked the available balance before every issue, and tested a daily sync of balances to Fabric Warehouse for Power BI.</li>
               </ul><figure class="gallery in-story">
-                <button class="shot" type="button"><img src="../assets/img/wms-architecture.webp" width="1672" height="941" loading="lazy" alt="The first design: Power BI imports on a schedule from a read-only WMS reporting API. The trial later moved reporting to a daily Fabric sync."><span class="shot-hint">Enlarge</span></button>
-                <figcaption>The first design: Power BI imports on a schedule from a read-only WMS reporting API. The trial later moved reporting to a daily Fabric sync.</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/wms-architecture.webp" width="1672" height="941" loading="lazy" alt="First design, before the Fabric sync above: Power BI would import on a schedule from a read-only WMS reporting API."><span class="shot-hint">Enlarge</span></button>
+                <figcaption>First design, before the Fabric sync above: Power BI would import on a schedule from a read-only WMS reporting API.</figcaption>
               </figure></dd></div>
               <div><dt>Result</dt><dd>Balances recalculated from the ledger matched the stored balances across 660 simulated transactions (713 ledger rows). On the 10 November 2026 sample snapshot, the reports flagged six materials below threshold and seven locations holding stock longer than 45 days, with 28 of 30 slots in use.</dd></div>
               <div><dt>Limits</dt><dd>The trial runs on sample data, and the Fabric sync has been tested but is not yet in production.</dd></div>
@@ -436,7 +437,7 @@
         <header>
           <span class="chapter-date">Get in touch</span>
           <h2 id="h-next">Contact and CV</h2>
-          <p class="chapter-story">I’m looking for an Analytics Engineer role where I can build and validate the data models, pipelines, and reports a team relies on.</p>
+          <p class="chapter-story">I’m looking for a Data Analyst or Data Engineer role where I can build and check the data models, pipelines and reports a team relies on.</p>
           <div class="contact-links">
             <a href="mailto:vpqcuong@gmail.com">vpqcuong@gmail.com</a>
             <a href="https://github.com/MPGranji" target="_blank" rel="noopener">GitHub</a>
