@@ -119,7 +119,7 @@
     <div class="container">
       <h2 id="h-featured">Featured projects</h2>
       <div class="case-index featured-index">
-        <a class="p-navy" href="#kalotoys"><span><strong>Kalotoys Warehouse Management System</strong><small>Reconciled stock balances across 660 simulated transactions</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+        <a class="p-navy" href="#kalotoys"><span><strong>Kalotoys Warehouse Management System</strong><small>Stock balances matched across 660 simulated transactions in the 6 Nov test</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
         <a class="p-amber" href="#hotel"><span><strong>Hotel Digital Transformation</strong><small>17.83% occupancy in October and a proposed rate change</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
         <a class="p-sand" href="#banking"><span><strong>Retail Banking Lakehouse</strong><small>10,000 simulated customers and 19 of 19 quality checks passed</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
       </div>
@@ -177,7 +177,7 @@
                 <figcaption>Viewing page: 71.64% of contracts were highly active, and TV led watch time almost everywhere (content labels in Vietnamese)</figcaption>
                 <div class="thumbs">
                   <button type="button" aria-pressed="true" data-src="../assets/img/telecom-viewing.jpg" data-caption="Viewing page: 71.64% of contracts were highly active, and TV led watch time almost everywhere (content labels in Vietnamese)"><img src="../assets/thumb/telecom-viewing.jpg" width="320" height="200" loading="lazy" alt="">Viewing</button>
-                  <button type="button" aria-pressed="false" data-src="../assets/img/telecom-search.jpg" data-caption="Search page: 69.13% of users changed their top category; Drama to C Drama was the largest shift"><img src="../assets/thumb/telecom-search.jpg" width="320" height="200" loading="lazy" alt="">Search</button>
+                  <button type="button" aria-pressed="false" data-src="../assets/img/telecom-search.jpg" data-caption="Search page: 69.13% of users changed their top category. Drama to C Drama was the most frequent shift among pairs of named genres, excluding Other."><img src="../assets/thumb/telecom-search.jpg" width="320" height="200" loading="lazy" alt="">Search</button>
                   <button type="button" aria-pressed="false" data-src="../assets/img/telecom-pipeline.jpg" data-caption="Spark reads both logs, OpenAI labels search keywords, and MySQL feeds Power BI"><img src="../assets/thumb/telecom-pipeline.jpg" width="320" height="200" loading="lazy" alt="">Architecture</button>
                 </div>
             </figure>
@@ -229,13 +229,13 @@
             <a class="project-switch" href="#banking"><span>Next project</span><strong>Retail Banking Lakehouse</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Built a Kafka and Spark pipeline that turns raw job-ad events into six hourly KPIs per ad and channel, processing only new events every minute instead of recounting the whole log.</p>
+          <p class="project-lead">Built a Kafka and Spark pipeline that turns simulated job-ad events into six hourly KPIs. An Airflow job scheduled every minute reads from a timestamp cutoff in MySQL.</p>
           <div class="project-body">
             <figure class="gallery">
-                <button class="shot" type="button"><img src="../assets/img/recruitment-architecture.png" width="1980" height="860" loading="lazy" alt="Streaming ingestion into Cassandra, then a one-minute batch into MySQL"><span class="shot-hint">Enlarge</span></button>
-                <figcaption>Streaming ingestion into Cassandra, then a one-minute batch into MySQL</figcaption>
+                <button class="shot" type="button"><img src="../assets/img/recruitment-architecture.png?v=cutoff" width="1980" height="860" loading="lazy" alt="Spark streams events into Cassandra. Airflow schedules a batch every minute to write hourly KPI rows to MySQL."><span class="shot-hint">Enlarge</span></button>
+                <figcaption>Spark streams events into Cassandra. Airflow schedules a batch every minute to write hourly KPI rows to MySQL.</figcaption>
                 <div class="thumbs">
-                  <button type="button" aria-pressed="true" data-src="../assets/img/recruitment-architecture.png" data-caption="Streaming ingestion into Cassandra, then a one-minute batch into MySQL"><img src="../assets/thumb/recruitment-architecture.png" width="320" height="200" loading="lazy" alt="">Architecture</button>
+                  <button type="button" aria-pressed="true" data-src="../assets/img/recruitment-architecture.png?v=cutoff" data-caption="Spark streams events into Cassandra. Airflow schedules a batch every minute to write hourly KPI rows to MySQL."><img src="../assets/thumb/recruitment-architecture.png?v=cutoff" width="320" height="200" loading="lazy" alt="">Architecture</button>
                   <button type="button" aria-pressed="false" data-src="../assets/img/recruitment-model.webp" data-caption="Event log in, hourly KPI table out, with company IDs joined from the job table"><img src="../assets/thumb/recruitment-model.webp" width="320" height="200" loading="lazy" alt="">Data model</button>
                   <button type="button" aria-pressed="false" data-src="../assets/img/recruitment-airflow.jpg" data-caption="The batch DAG in Airflow, scheduled every minute; two runs were in progress when captured"><img src="../assets/thumb/recruitment-airflow.jpg" width="320" height="200" loading="lazy" alt="">Airflow runs</button>
                 </div>
@@ -245,7 +245,7 @@
               <div><dt>My role</dt><dd>Solo project.</dd></div>
               <div><dt>Approach</dt><dd><ul>
                 <li>Parsed Kafka JSON against an explicit schema in Spark Structured Streaming and checkpointed progress, so a restarted stream resumes where it stopped.</li>
-                <li>Read only events newer than a high-water mark stored in MySQL, so each run processes new data instead of rescanning the whole log.</li>
+                <li>Compared the latest Cassandra event timestamp with MySQL’s latest result update time. When Cassandra was ahead, the batch read events at or after the MySQL cutoff.</li>
                 <li>Defined six KPIs per hour, job, publisher, campaign and group: clicks, conversions, qualified and disqualified applications, hourly spend and average bid. A join to the job table adds company IDs.</li>
                 <li>Scheduled the batch every minute in Airflow and ran the stack with Docker Compose.</li>
               </ul><figure class="gallery in-story">
@@ -253,7 +253,7 @@
                 <figcaption>Each run checks for new events, then filters, aggregates, joins and appends</figcaption>
               </figure></dd></div>
               <div><dt>Result</dt><dd>The pipeline produces an hourly table that can be filtered by job, channel, campaign and group. I verified the KPI formulas by recomputing 20 logged events from one group and hour: 10 clicks, 30.00 spend and a 1.50 average bid.</dd></div>
-              <div><dt>Limits</dt><dd>Results are appended, so an hour whose events arrive in two batches gets two rows and needs a final sum when reported. All events are simulated.</dd></div>
+              <div><dt>Limits</dt><dd>Events at the cutoff can be read again, and late events with older timestamps can be missed. The batch appends results, so an hourly group can have multiple rows. Resolve overlapping events before summing counts and spend. Recalculate the average bid from total bid and the number of valid bids in the underlying events.</dd></div>
             </dl>
           </div>
         </div>
@@ -437,7 +437,7 @@
             <a class="project-switch" href="#hotel"><span>Previous project</span><strong>Hotel Digital Transformation</strong></a>
         </div>
         <div class="project-main" data-reveal>
-          <p class="project-lead">Built a warehouse ledger and low-stock reports for a toy maker. Across 660 simulated transactions, balances recalculated from the ledger matched the stored inventory balances.</p>
+          <p class="project-lead">Built a warehouse ledger and low-stock reports for a toy maker. In the 6 November 2026 test, recalculated balances matched stored balances across 660 simulated transactions.</p>
           <div class="project-body">
             <figure class="gallery">
                 <button class="shot" type="button"><img src="../assets/img/wms-powerbi.jpg" width="1700" height="839" loading="lazy" alt="Power BI overview, filtered to sheet materials: receipts, issues and closing stock against thresholds (sample data)"><span class="shot-hint">Enlarge</span></button>
@@ -462,7 +462,7 @@
                 <button class="shot" type="button"><img src="../assets/img/wms-architecture.webp" width="1672" height="941" loading="lazy" alt="First design, before the Fabric sync above: Power BI would import on a schedule from a read-only WMS reporting API."><span class="shot-hint">Enlarge</span></button>
                 <figcaption>First design, before the Fabric sync above: Power BI would import on a schedule from a read-only WMS reporting API.</figcaption>
               </figure></dd></div>
-              <div><dt>Result</dt><dd>Balances recalculated from the ledger matched the stored balances across 660 simulated transactions (713 ledger rows). On the 10 November 2026 sample snapshot, the reports flagged six materials below threshold and seven locations holding stock longer than 45 days, with 28 of 30 slots in use.</dd></div>
+              <div><dt>Result</dt><dd>In the 6 November 2026 test, balances recalculated from 660 simulated transactions (713 ledger rows) matched the stored balances. In the 10 November 2026 dashboard snapshot, six materials were below threshold, seven locations held stock for more than 45 days, and 28 of 30 slots were in use.</dd></div>
               <div><dt>Limits</dt><dd>The trial runs on sample data, and the Fabric sync has been tested but is not yet in production.</dd></div>
             </dl>
           </div>
