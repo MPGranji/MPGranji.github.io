@@ -119,11 +119,11 @@ button { color: inherit; font: inherit; cursor: pointer; }
   border-radius: 99px; font-size: var(--text-sm); font-weight: 600; white-space: nowrap; list-style: none; cursor: pointer;
 }
 .menu summary::-webkit-details-marker { display: none; }
-.compact-label { display: none; }
+.compact-label, .timeline-menu .compact-icon { display: none; }
 .menu summary svg { transition: transform var(--fast); }
 .menu[open] summary svg { transform: rotate(180deg); }
 .cv-menu summary:hover { border-color: var(--fg); }
-.cv-menu[open] summary svg { transform: none; }
+.cv-menu[open] summary svg, .timeline-menu[open] summary .compact-icon { transform: none; }
 .cv-menu .menu-panel { min-width: 0; }
 .cv-menu .menu-panel .icon { color: var(--amber); }
 .menu-panel { position: absolute; top: calc(100% + var(--s2)); right: 0; width: max-content; min-width: 230px; max-width: calc(100vw - 2rem); padding: var(--s2); border-radius: var(--radius-md); background: var(--night); color: var(--white); border: 1px solid var(--steel); animation: drop var(--fast) var(--ease); }
@@ -131,6 +131,24 @@ button { color: inherit; font: inherit; cursor: pointer; }
 .menu-panel a:hover, .menu-panel a[aria-current] { background: var(--navy); }
 .menu-panel a:focus-visible { outline-color: var(--sky); outline-offset: -3px; }
 .swatch { width: 12px; height: 12px; flex: none; border-radius: 50%; background: var(--c); outline: 1px solid rgb(244 214 176 / .35); }
+
+.project-menu[open] summary { border-color: var(--accent); }
+.project-menu .menu-panel { width: 17rem; min-width: 0; max-height: calc(100dvh - var(--header) - var(--s5)); overflow-y: auto; overscroll-behavior: contain; }
+.project-menu .menu-panel a { line-height: 1.35; }
+.project-menu a[aria-current] { color: var(--sky); }
+.project-filter { margin: var(--s1) var(--s1) var(--s2); }
+.project-filter input {
+  width: 100%; min-height: var(--tap); padding: var(--s2) var(--s3); border: 1px solid var(--steel);
+  border-radius: var(--radius-sm); background: var(--navy); color: var(--white); font: inherit;
+}
+.project-filter input::placeholder { color: #A7B4C6; }
+.project-empty:not(:empty) { padding: var(--s2) var(--s3); color: #A7B4C6; font-size: var(--text-sm); }
+
+@media (min-width: 1700px) {
+  .project-menu { position: fixed; top: calc(var(--header) + var(--s5)); right: var(--s3); }
+  .project-menu summary { background: var(--bg); }
+  .project-menu .menu-panel { width: 12.5rem; max-height: calc(100dvh - var(--header) - var(--tap) - var(--s8)); }
+}
 
 /* Tag and toolkit */
 .tag { display: inline-flex; align-items: center; padding: 2px var(--s3); border: 1px solid var(--line); border-radius: 99px; font-size: var(--text-sm); white-space: nowrap; }
@@ -380,23 +398,23 @@ html:not(.js) .reading { display: none; }
   .project { padding-left: var(--s5); }
   .employer { margin-left: var(--s5); }
 }
-@media (max-width: 560px) {
-  .header-row { gap: var(--s2); }
-  .menu summary { padding: 0 var(--s3); }
+@media (max-width: 640px) {
+  .header-row { gap: var(--s1); }
+  .menu summary { min-width: var(--tap); padding-inline: var(--s2); justify-content: center; }
+  .timeline-menu [data-current], .timeline-menu .timeline-chevron, .project-menu summary .icon, .cv-menu summary .icon { display: none; }
+  .timeline-menu .compact-label, .timeline-menu .compact-icon { display: inline; }
   /* Align the timeline panel to the right edge of the screen on mobile. */
   .menu { position: static; }
   .menu-panel { top: var(--header); right: var(--s4); }
+}
+@media (max-width: 560px) {
   .hero-actions .btn { width: 100%; }
   .journey a { grid-template-columns: minmax(0, 1fr); gap: 0; padding-inline: 1.3rem; }
   .shot { aspect-ratio: 4 / 3; }
   .thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 420px) {
-  .header-row { gap: var(--s1); }
-  .timeline-menu summary { padding-inline: var(--s2); }
-  .timeline-menu [data-current], .cv-menu summary .icon { display: none; }
-  .timeline-menu .compact-label { display: inline; }
-  .cv-menu summary { min-width: var(--tap); justify-content: center; }
+  .brand { font-size: var(--text-md); }
 }
 /* Cases on smaller and shorter screens */
 @media (max-width: 1080px) {

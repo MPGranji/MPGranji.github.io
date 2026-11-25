@@ -32,7 +32,11 @@
   }));
   const current = $('[data-current]');
   const chapterLinks = $$('.timeline-menu .menu-panel a');
+  const projectMenu = $('.project-menu');
+  const projectLinks = $$('nav a', projectMenu);
+  const projectLinksById = new Map(projectLinks.map((link) => [link.hash.slice(1), link]));
   let active = null;
+  let activeProjectLink;
   let queued = false;
 
   function update() {
@@ -57,9 +61,11 @@
       project.classList.toggle('is-lit', project.getBoundingClientRect().top < readingLine);
     });
 
+    let projectLink;
     cases.forEach(({ el, bar, label, parts }) => {
       const box = el.getBoundingClientRect();
       if (box.bottom < 0 || box.top > vh) return;
+      if (box.top <= readingLine && box.bottom > readingLine) projectLink = projectLinksById.get(el.id);
       let part = 'Overview';
       parts.forEach((dt) => {
         if (dt.checkVisibility() && dt.getBoundingClientRect().top < readingLine) part = dt.textContent;
@@ -67,6 +73,12 @@
       if (label.textContent !== part) label.textContent = part;
       bar.style.setProperty('--read', clamp((readingLine - box.top) / box.height));
     });
+
+    if (projectLink !== activeProjectLink) {
+      activeProjectLink?.removeAttribute('aria-current');
+      projectLink?.setAttribute('aria-current', 'location');
+      activeProjectLink = projectLink;
+    }
 
     if (next === active) return;
     active = next;
@@ -103,6 +115,26 @@
     open.open = false;
     $('summary', open).focus();
   });
+
+  /* Project picker */
+  const projectFilter = $('.project-filter', projectMenu);
+  const projectQuery = $('input', projectFilter);
+  const projectEmpty = $('.project-empty', projectMenu);
+  function filterProjects() {
+    const query = projectQuery.value.trim().toLowerCase();
+    projectLinks.forEach((link) => { link.hidden = !link.textContent.toLowerCase().includes(query); });
+    projectEmpty.textContent = projectLinks.every((link) => link.hidden) ? 'No matching projects.' : '';
+  }
+  projectQuery.addEventListener('input', filterProjects);
+  projectQuery.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') projectLinks.find((link) => !link.hidden)?.click();
+  });
+  projectMenu.addEventListener('toggle', () => {
+    if (projectMenu.open) return;
+    projectQuery.value = '';
+    filterProjects();
+  });
+  projectFilter.hidden = false;
 
   /* Galleries and lightbox */
   const lightbox = $('.lightbox');

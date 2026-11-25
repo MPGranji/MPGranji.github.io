@@ -25,14 +25,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Bricolage+Grotesque:wght@600;650&amp;display=swap">
-  <link rel="stylesheet" href="../styles.css?v=featured-projects">
+  <link rel="stylesheet" href="../styles.css?v=project-picker">
   <script>document.documentElement.classList.add('js')</script>
-  <script src="../main.js" defer></script>
+  <script src="../main.js?v=project-picker" defer></script>
 </head>
 <body>
 <svg hidden aria-hidden="true">
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
   <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-timeline" viewBox="0 0 24 24"><path d="M5 6h.01M5 12h.01M5 18h.01M10 6h9m-9 6h9m-9 6h9"/></symbol>
   <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
   <symbol id="i-file" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
 </svg>
@@ -43,7 +44,7 @@
   <div class="container header-row">
     <a class="brand" href="#top">Quốc Cường</a>
     <details class="menu timeline-menu">
-      <summary><span data-current>Timeline</span><span class="compact-label">Timeline</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+      <summary><span data-current>Timeline</span><span class="sr-only compact-label">Timeline</span><svg class="icon timeline-chevron" aria-hidden="true"><use href="#i-chevron"/></svg><svg class="icon compact-icon" aria-hidden="true"><use href="#i-timeline"/></svg></summary>
       <nav class="menu-panel" aria-label="Chapters">
         <a href="#foundations"><i class="swatch" style="--c:var(--night)"></i>Since 2022: Foundations</a>
         <a href="#analysis"><i class="swatch" style="--c:var(--navy)"></i>Dec 2025: Data analysis</a>
@@ -52,6 +53,24 @@
         <a href="#internship"><i class="swatch" style="--c:var(--sand)"></i>Aug–Nov 2026: Internship</a>
         <a href="#next"><i class="swatch" style="--c:var(--amber)"></i>Next: Contact and CV</a>
       </nav>
+    </details>
+    <details class="menu project-menu">
+      <summary>Projects<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+      <div class="menu-panel">
+        <div class="project-filter" hidden>
+          <label class="sr-only" for="project-query">Filter projects</label>
+          <input id="project-query" type="search" placeholder="Filter projects" autocomplete="off">
+        </div>
+        <nav aria-label="Jump to a project">
+          <a href="#telecom">Telecom Customer 360</a>
+          <a href="#recruitment">Recruitment Data Platform</a>
+          <a href="#banking">Retail Banking Lakehouse</a>
+          <a href="#fashion">Fashion E-commerce</a>
+          <a href="#hotel">Hotel Digital Transformation</a>
+          <a href="#kalotoys">Kalotoys Warehouse Management System</a>
+        </nav>
+        <p class="project-empty" role="status"></p>
+      </div>
     </details>
     <details class="menu cv-menu">
       <summary aria-label="Download a CV">CV<svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></summary>
@@ -139,7 +158,7 @@
         <div><p class="chapter-story">Two Power BI views answer different questions: what each contract watched and how each user’s top search category changed across two periods.</p><div class="toolkit"><h3>Tools</h3><ul class="tools"><li class="tag">PySpark</li><li class="tag">Spark SQL</li><li class="tag">Pandas</li><li class="tag">MySQL</li><li class="tag">Power BI</li><li class="tag">OpenAI API</li></ul></div></div>
       </header>
 
-      <article class="project case p-sky" id="telecom" aria-labelledby="t-telecom">
+      <article class="project case p-sky" id="telecom" aria-labelledby="t-telecom" tabindex="-1">
         <div class="project-side">
             <h3 id="t-telecom"><span>Telecom Customer 360 Behavioral Analytics</span></h3>
             <p class="project-what">Viewing activity by contract and search interest by user.</p>
@@ -198,7 +217,7 @@
         <a class="p-sand" href="#banking"><b>02</b><span><strong>Retail Banking Lakehouse</strong><small>Customer marts on simulated banking data</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
       </nav>
 
-      <article class="project case p-sky" id="recruitment" aria-labelledby="t-recruitment">
+      <article class="project case p-sky" id="recruitment" aria-labelledby="t-recruitment" tabindex="-1">
         <div class="project-side">
             <h3 id="t-recruitment"><span class="project-no" aria-hidden="true">01</span><span>Recruitment Data Platform</span></h3>
             <p class="project-what">Hourly job-ad metrics from a stream of recruitment events.</p>
@@ -239,7 +258,7 @@
         </div>
       </article>
 
-      <article class="project case p-sand" id="banking" aria-labelledby="t-banking">
+      <article class="project case p-sand" id="banking" aria-labelledby="t-banking" tabindex="-1">
         <div class="project-side">
             <h3 id="t-banking"><span class="project-no" aria-hidden="true">02</span><span>Retail Banking Customer 360 Lakehouse</span></h3>
             <p class="project-what">Historized customer dimensions, validated marts and masked reporting views.</p>
@@ -290,7 +309,7 @@
         <div><p class="chapter-story">My thesis combined a mobile shopping app with a web admin dashboard that shows where searches fail and how shoppers respond to recommendations.</p><div class="toolkit"><h3>Tools</h3><ul class="tools"><li class="tag">React Native</li><li class="tag">Expo</li><li class="tag">React</li><li class="tag">TypeScript</li><li class="tag">MongoDB</li></ul></div></div>
       </header>
 
-      <article class="project case p-navy" id="fashion" aria-labelledby="t-fashion">
+      <article class="project case p-navy" id="fashion" aria-labelledby="t-fashion" tabindex="-1">
         <div class="project-side">
             <h3 id="t-fashion"><span>Fashion E-commerce</span></h3>
             <p class="project-what">Search analytics, recommendations and virtual try-on in a two-person thesis.</p>
@@ -355,7 +374,7 @@
         <a class="p-navy" href="#kalotoys"><b>02</b><span><strong>Kalotoys WMS</strong><small>Inventory modeling and stock reconciliation</small></span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
       </nav>
 
-      <article class="project case p-amber" id="hotel" aria-labelledby="t-hotel">
+      <article class="project case p-amber" id="hotel" aria-labelledby="t-hotel" tabindex="-1">
         <div class="project-side">
             <h3 id="t-hotel"><span class="project-no" aria-hidden="true">01</span><span>Hotel Digital Transformation</span></h3>
             <p class="project-what">Occupancy analysis, a pricing proposal and an operations app with embedded reporting.</p>
@@ -406,7 +425,7 @@
         </div>
       </article>
 
-      <article class="project case p-navy" id="kalotoys" aria-labelledby="t-kalotoys">
+      <article class="project case p-navy" id="kalotoys" aria-labelledby="t-kalotoys" tabindex="-1">
         <div class="project-side">
             <h3 id="t-kalotoys"><span class="project-no" aria-hidden="true">02</span><span>Kalotoys Warehouse Management System</span></h3>
             <p class="project-what">Stock movements, balance reconciliation and Power BI inventory reporting.</p>
